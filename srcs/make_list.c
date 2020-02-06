@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/06 15:17:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/06 17:29:19 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ t_lst	*ft_add_elem_to_end(t_lst *stack_last, t_lst *elem)
 
 int		ft_check_data(char *str)
 {
+	if (!ft_isdigit(*str) && *str != '-' && *str != '+')
+	{
+		ft_putendl("Error");
+		exit(1);
+	}
 	return (ft_atoi(str));
 }
 
