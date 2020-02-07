@@ -6,42 +6,62 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/06 17:22:49 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/07 17:16:19 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		ft_list_is_sorted(t_lst *stack)
+int		ft_to_visualize(char **argv)
 {
-	while (stack->next)
-	{
-		if (stack->nb > stack->next->nb)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-void	ft_print_result(t_lst *stack)
-{
-	if (ft_list_is_sorted(stack))
-		ft_putendl("OK");
-	else
-		ft_putendl("KO");
+	if (ft_strequ(argv[1], "-v"))
+		return (1);
+	return (0);
 }
 
 int 	main(int arg, char **argv)
 {	
-	t_lst	*stack;
-	char	*input;
+	t_stacks	*stacks;
+	int			visualize;
 
 	if (arg == 1)
 		return (1);
-	stack = ft_params_to_list(arg, argv);
-	ft_print_lst(stack);
-	while (get_next_line(1, &input) != 0)
-		ft_printf("%s\n", input);
-	ft_print_result(stack);
+	visualize = ft_to_visualize(argv);
+	stacks = (t_stacks*)malloc(sizeof(t_stacks));
+	if (visualize)
+		ft_params_to_list(arg - 1, &argv[1], stacks);
+	else
+		ft_params_to_list(arg, argv, stacks);
+	ft_do_operations(stacks, visualize);
+	ft_print_result(stacks);
 	return (0);
 }
+	
+	/*ft_printf("Stack a at beginning:");
+	ft_print_lst(stacks->a);
+	ft_printf("Stack b at beginning:");
+	ft_print_lst(stacks->b);
+
+	ft_swap(stacks, 'a');
+	ft_printf("Stack a after swap a:");
+	ft_print_lst(stacks->a);
+	ft_printf("Stack b after swap a:");
+	ft_print_lst(stacks->b);
+
+	ft_push(stacks, 'b');
+	ft_printf("Stack a after push b:");
+	ft_print_lst(stacks->a);
+	ft_printf("Stack b after push b:");
+	ft_print_lst(stacks->b);
+
+	ft_rotate(stacks, 'a');
+	ft_printf("Stack a after rotate a:");
+	ft_print_lst(stacks->a);
+	ft_printf("Stack b after rotate a:");
+	ft_print_lst(stacks->b);
+
+	ft_reverse_rotate(stacks, 'r');
+	ft_printf("Stack a after reverse rotate r:");
+	ft_print_lst(stacks->a);
+	ft_printf("Stack b after reverse rotate r:");
+	ft_print_lst(stacks->b);*/

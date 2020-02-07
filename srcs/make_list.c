@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/06 17:29:19 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/07 16:17:50 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-t_lst	*ft_new_elem(int nb)
+static t_lst	*ft_new_elem(int nb)
 {
 	t_lst 	*elem;
 
@@ -23,35 +23,48 @@ t_lst	*ft_new_elem(int nb)
 	return (elem);
 }
 
-t_lst	*ft_add_elem_to_end(t_lst *stack_last, t_lst *elem)
+t_lst			*ft_add_elem_to_start(t_lst *stack, t_lst *elem)
+{
+	elem->next = stack;
+	return (elem);
+}
+
+t_lst			*ft_add_elem_to_end(t_lst *stack_last, t_lst *elem)
 {
 	stack_last->next = elem;
 	return (elem);
 }
 
-int		ft_check_data(char *str)
+static int		ft_check_data(char *str, t_lst *stack)
 {
+	int		nb;
+
 	if (!ft_isdigit(*str) && *str != '-' && *str != '+')
+		ft_error();
+	nb = ft_atoi_checker(str);
+	while (stack)
 	{
-		ft_putendl("Error");
-		exit(1);
+		if (nb == stack->nb)
+			ft_error();
+		stack = stack->next;
 	}
-	return (ft_atoi(str));
+	return (nb);
 }
 
-t_lst	*ft_params_to_list(int arg, char **argv)
+void			ft_params_to_list(int arg, char **argv, t_stacks *stacks)
 {
-	t_lst	*stack;
-	t_lst	*stack_last;
 	int		i;
 
-	stack = ft_new_elem(ft_check_data(argv[1]));
-	stack_last = stack;
+	stacks->a = NULL;
+	stacks->a = ft_new_elem(ft_check_data(argv[1], stacks->a));
+	stacks->a_end = stacks->a;
+	stacks->b = NULL;
+	stacks->b_end = NULL;
 	i = 2;
 	while (i < arg)
 	{
-		stack_last = ft_add_elem_to_end(stack_last, ft_new_elem(ft_check_data(argv[i])));
+		stacks->a_end = ft_add_elem_to_end(stacks->a_end,
+								ft_new_elem(ft_check_data(argv[i], stacks->a)));
 		i++;
 	}
-	return (stack);
 }

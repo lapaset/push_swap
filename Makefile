@@ -6,30 +6,33 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/06 15:18:00 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/07 17:16:41 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = checker
+NAME_CHECKER = checker
 ODIR = objs
 SDIR = srcs
 INC = includes/
 LIB = libft/libft.a
 LIBDIR = libft
-_OBJS = checker.o make_list.o utilities.o
-OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
+_OBJS_CHECKER = checker.o make_list.o utilities.o operations.o do_operations.o\
+	visualize.o
+OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 GREEN = \033[1;32m
 EOC = \033[1;0m
 
-all: $(NAME)
+all: $(NAME_CHECKER)
 
 $(ODIR)/%.o: $(SDIR)/%.c
 	@[ -d $(ODIR) ] || mkdir $(ODIR)
 	@gcc -Wall -Wextra -Werror -c -I $(INC) -o $@ $<
 
-$(NAME): $(OBJS)
+$(NAME_CHECKER): $(OBJS_CHECKER)
 	@make -C $(LIBDIR)
-	@gcc -o $(NAME) $(OBJS) $(LIB) -I $(INC)
+	@gcc -o $(NAME_CHECKER) $(OBJS_CHECKER) $(LIB) -I $(INC)\
+		-I /usr/local/include -I /usr/local/lib/ -lmlx\
+		-framework OpenGL -framework AppKit
 	@echo "$(RED)Checker created$(EOC)"
 
 clean:
@@ -38,7 +41,7 @@ clean:
 	@make -C $(LIBDIR) clean
 
 fclean: clean
-	@rm -Rf -r $(NAME)
+	@rm -Rf -r $(NAME_CHECKER)
 	@echo "Checker removed"
 	@make -C $(LIBDIR) libclean
 

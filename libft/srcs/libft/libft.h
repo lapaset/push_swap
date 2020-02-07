@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:02:10 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/06 15:12:01 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/07 15:47:12 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,11 @@ void				ft_put_unsigned_base(unsigned long long nb, int base,
 void				ft_put_chars(int amount, char c);
 int					ft_ll_len(long long nb);
 void				ft_putnbr_ll(long long n);
-void				ft_swap(int *a, int *b);
+void				ft_swap_ptrs(int *a, int *b);
 int					ft_hexa_to_int(char c);
 int					ft_hexa_len(char *str);
 int					ft_is_hexa(char c);
 int					ft_power(int nb, int pow);
+char				*ft_stralloc(char *str);
 
 #endif

@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap.c                                          :+:      :+:    :+:   */
+/*   ft_stralloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 09:20:46 by llahti            #+#    #+#             */
-/*   Updated: 2020/01/27 11:29:39 by llahti           ###   ########.fr       */
+/*   Created: 2020/02/07 15:46:43 by llahti            #+#    #+#             */
+/*   Updated: 2020/02/07 15:46:55 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_swap(int *a, int *b)
+char	*ft_stralloc(char *str)
 {
-	int		c;
+	char	*ret;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	if (!str)
+		return (NULL);
+	ret = (char*)malloc(sizeof(char) * ft_strlen(str));
+	return (ft_strcpy(ret, str));
 }
