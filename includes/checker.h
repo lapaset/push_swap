@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:15:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/07 17:57:04 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct 		s_ptrs
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	t_stacks		*stacks;
 }					t_ptrs;
 
 
@@ -64,6 +65,6 @@ void				ft_reverse_rotate(t_stacks *stacks, char c);
 void				ft_do_operations(t_stacks *stacks, int visualize);
 
 //ft_visualize:
-void				ft_visualize();
+void				ft_visualize(t_stacks *stacks);
 
 #endif

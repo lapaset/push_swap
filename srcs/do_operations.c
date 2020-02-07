@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:49:31 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:20:35 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/07 17:56:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		**ft_get_instructions(void)
 	return (instructions);
 }
 
-static void		(**ft_get_operations(void))(t_stacks*, char)
+void			(**ft_get_operations(void))(t_stacks*, char)
 {
 	void	(**operations)(t_stacks*, char);
 
@@ -50,7 +50,7 @@ static void		(**ft_get_operations(void))(t_stacks*, char)
 	return (operations);
 }
 
-static void		ft_free_instructions(char **instructions)
+void			ft_free_instructions(char **instructions)
 {
 	int		i;
 
@@ -72,9 +72,9 @@ void			ft_do_operations(t_stacks *stacks, int visualize)
 
 	operations = ft_get_operations();
 	instructions = ft_get_instructions();
-	(void)visualize;
-	//if (visualize)
-	//	ft_visualize();
+	//(void)visualize;
+	if (visualize)
+		ft_visualize(stacks);
 	while (get_next_line(1, &input) != 0)
 	{
 		i = 0;
