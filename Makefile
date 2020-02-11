@@ -6,7 +6,7 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/07 17:16:41 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/11 11:23:56 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SDIR = srcs
 INC = includes/
 LIB = libft/libft.a
 LIBDIR = libft
-_OBJS_CHECKER = checker.o make_list.o utilities.o operations.o do_operations.o\
+_OBJS_CHECKER = checker.o make_list.o utilities.o operations.o instructions.o\
 	visualize.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 GREEN = \033[1;32m

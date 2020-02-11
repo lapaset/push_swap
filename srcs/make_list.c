@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 16:17:50 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:33:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void			ft_params_to_list(int arg, char **argv, t_stacks *stacks)
 {
 	int		i;
 
+	stacks->size = arg - 1;
 	stacks->a = NULL;
 	stacks->a = ft_new_elem(ft_check_data(argv[1], stacks->a));
 	stacks->a_end = stacks->a;

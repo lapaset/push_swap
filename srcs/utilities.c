@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:58:06 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 10:08:48 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_print_lst(t_lst *lst)
 
 int		ft_list_is_sorted(t_lst *stack)
 {
+	ft_print_lst(stack);
 	while (stack->next)
 	{
 		if (stack->nb > stack->next->nb)
@@ -71,3 +72,4 @@ int			ft_atoi_checker(const char *str)
 		ft_error();
 	return ((int)a * sign);
 }
+

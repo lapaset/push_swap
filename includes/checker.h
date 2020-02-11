@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:57:04 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:36:41 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define WIN_WIDTH 1700
 # define WIN_HEIGHT 1000
+# define MAX_INSTRUCTIONS 1000
 
 typedef struct 		s_lst
 {
@@ -32,12 +33,15 @@ typedef struct		s_stacks
 	t_lst			*a_end;
 	t_lst			*b;
 	t_lst			*b_end;
+	int				size;
 }					t_stacks;
 
 typedef struct 		s_ptrs
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
+	void			*img_ptr;
+	char			*data_ptr;
 	t_stacks		*stacks;
 }					t_ptrs;
 
@@ -60,9 +64,12 @@ void				ft_swap(t_stacks *stacks, char c);
 void				ft_push(t_stacks *stacks, char c);
 void				ft_rotate(t_stacks *stacks, char c);
 void				ft_reverse_rotate(t_stacks *stacks, char c);
+void				(**ft_operations(void))(t_stacks*, char);
 
 //do_operations:
-void				ft_do_operations(t_stacks *stacks, int visualize);
+void				ft_deal_instructions(t_stacks *stacks);
+char				**ft_instructions(void);
+void				ft_free_instructions(char **instructions);
 
 //ft_visualize:
 void				ft_visualize(t_stacks *stacks);

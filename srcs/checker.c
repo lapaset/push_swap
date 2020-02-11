@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:16:19 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:30:11 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ int		ft_to_visualize(char **argv)
 int 	main(int arg, char **argv)
 {	
 	t_stacks	*stacks;
-	int			visualize;
 
 	if (arg == 1)
 		return (1);
-	visualize = ft_to_visualize(argv);
 	stacks = (t_stacks*)malloc(sizeof(t_stacks));
-	if (visualize)
-		ft_params_to_list(arg - 1, &argv[1], stacks);
-	else
+	if (!ft_to_visualize(argv))
+	{
 		ft_params_to_list(arg, argv, stacks);
-	ft_do_operations(stacks, visualize);
+		ft_deal_instructions(stacks);
+	}
+	else
+	{
+		ft_params_to_list(arg - 1, &argv[1], stacks);
+		ft_visualize(stacks);
+	}
 	ft_print_result(stacks);
 	return (0);
 }

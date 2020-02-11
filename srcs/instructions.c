@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_operations.c                                    :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:49:31 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 17:56:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:26:21 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static char		**ft_get_instructions(void)
+char		**ft_instructions(void)
 {
 	char	**instructions;
 
@@ -31,25 +31,6 @@ static char		**ft_get_instructions(void)
 	return (instructions);
 }
 
-void			(**ft_get_operations(void))(t_stacks*, char)
-{
-	void	(**operations)(t_stacks*, char);
-
-	operations = malloc(sizeof(void*) * 11);
-	operations[0] = &ft_swap;
-	operations[1] = &ft_swap;
-	operations[2] = &ft_swap;
-	operations[3] = &ft_push;
-	operations[4] = &ft_push;
-	operations[5] = &ft_rotate;
-	operations[6] = &ft_rotate;
-	operations[7] = &ft_rotate;
-	operations[8] = &ft_reverse_rotate;
-	operations[9] = &ft_reverse_rotate;
-	operations[10] = &ft_reverse_rotate;
-	return (operations);
-}
-
 void			ft_free_instructions(char **instructions)
 {
 	int		i;
@@ -63,33 +44,42 @@ void			ft_free_instructions(char **instructions)
 	free(instructions);
 }
 
-void			ft_do_operations(t_stacks *stacks, int visualize)
+int				ft_instruction_nb(char *input, char **instructions)
 {
-	void	(**operations)(t_stacks*, char);
-	char	**instructions;
-	char	*input;
 	int		i;
 
-	operations = ft_get_operations();
-	instructions = ft_get_instructions();
-	//(void)visualize;
-	if (visualize)
-		ft_visualize(stacks);
-	while (get_next_line(1, &input) != 0)
+	i = 0;
+	//ft_printf("input: %s\n", input);
+	while (i < 11)
 	{
-		i = 0;
-		while (i < 11)
-		{
-			if (ft_strequ(instructions[i], input))
-			{
-				operations[i](stacks, input[ft_strlen(input) - 1]);
-				break ;
-			}
-			i++;
-		}
-		if (i == 11)
-			ft_error();
+		if (ft_strequ(instructions[i], input))
+			break ;
+		i++;
+	}
+	if (i == 11)
+		ft_error();
+	return (i);
+}
+
+void			ft_read_and_do(int fd, t_stacks *stacks)
+{
+	void	(**operations)(t_stacks*, char);
+	char	*input;
+	char	**instructions;
+
+	operations = ft_operations();
+	instructions = ft_instructions();
+	while (get_next_line(fd, &input) != 0)
+	{
+		operations[ft_instruction_nb(input, instructions)]
+					(stacks, input[ft_strlen(input) - 1]);
 	}
 	ft_free_instructions(instructions);
 	free(operations);
+}
+
+void			ft_deal_instructions(t_stacks *stacks)
+{
+	ft_read_and_do(0, stacks);
+	ft_read_and_do(1, stacks);
 }
