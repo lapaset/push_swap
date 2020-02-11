@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 11:36:41 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/11 17:21:11 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define WIN_WIDTH 1700
 # define WIN_HEIGHT 1000
 # define MAX_INSTRUCTIONS 1000
+# define MAX_PRINT 500
 
 typedef struct 		s_lst
 {
@@ -45,6 +46,12 @@ typedef struct 		s_ptrs
 	t_stacks		*stacks;
 }					t_ptrs;
 
+typedef struct 		s_color
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
 //CHECKER:
 //utilities:
@@ -73,5 +80,9 @@ void				ft_free_instructions(char **instructions);
 
 //ft_visualize:
 void				ft_visualize(t_stacks *stacks);
+void				ft_close(t_ptrs *ptrs);
+
+//ft_draw_stack:
+void				ft_draw_stack(t_ptrs *ptrs, t_lst *stack, int x, char *color);
 
 #endif
