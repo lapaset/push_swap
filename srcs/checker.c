@@ -6,12 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 11:30:11 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/17 11:20:08 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
+// todo as a bonus: with some flag enter ends giving instructions
 int		ft_to_visualize(char **argv)
 {
 	if (ft_strequ(argv[1], "-v"))

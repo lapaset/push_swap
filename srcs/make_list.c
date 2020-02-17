@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 11:33:01 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/17 16:53:53 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		ft_check_data(char *str, t_lst *stack)
 
 	if (!ft_isdigit(*str) && *str != '-' && *str != '+')
 		ft_error();
-	nb = ft_atoi_checker(str);
+	nb = ft_atoi_push_swap(str);
 	while (stack)
 	{
 		if (nb == stack->nb)
@@ -51,7 +51,7 @@ static int		ft_check_data(char *str, t_lst *stack)
 	return (nb);
 }
 
-void			ft_params_to_list(int arg, char **argv, t_stacks *stacks)
+void		ft_params_to_list(int arg, char **argv, t_stacks *stacks)
 {
 	int		i;
 

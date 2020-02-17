@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 13:02:10 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/07 15:47:12 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/17 11:44:12 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int					ft_hexa_len(char *str);
 int					ft_is_hexa(char c);
 int					ft_power(int nb, int pow);
 char				*ft_stralloc(char *str);
+int					ft_abs(int nb);
 
 #endif

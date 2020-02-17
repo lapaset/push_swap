@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 10:08:48 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/17 16:56:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	ft_print_lst(t_lst *lst)
 {
 	while (lst)
 	{
-		ft_printf("%d ", lst->nb);
+		if (lst->nb > 4)
+			ft_printf("{yellow}");
+		ft_printf("%d{eoc} ", lst->nb);
 		lst = lst->next;
 	}
 	ft_printf("\n");
@@ -24,6 +26,7 @@ void	ft_print_lst(t_lst *lst)
 
 int		ft_list_is_sorted(t_lst *stack)
 {
+	//remove print
 	ft_print_lst(stack);
 	while (stack->next)
 	{
@@ -34,6 +37,8 @@ int		ft_list_is_sorted(t_lst *stack)
 	return (1);
 }
 
+
+//maybe this to another c file
 void	ft_print_result(t_stacks *stacks)
 {
 	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)
@@ -44,11 +49,11 @@ void	ft_print_result(t_stacks *stacks)
 
 void	ft_error(void)
 {
-	ft_putendl("Error");
+	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 
-int			ft_atoi_checker(const char *str)
+int			ft_atoi_push_swap(const char *str)
 {
 	long	a;
 	int 	sign;
