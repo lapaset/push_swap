@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/17 16:56:35 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/18 09:09:25 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_print_lst(t_lst *lst)
 int		ft_list_is_sorted(t_lst *stack)
 {
 	//remove print
-	ft_print_lst(stack);
+	//ft_print_lst(stack);
 	while (stack->next)
 	{
 		if (stack->nb > stack->next->nb)

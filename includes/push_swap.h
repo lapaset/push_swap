@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/17 13:40:10 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/18 10:00:15 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # include "stacks.h"
 
 //quicksort:
-void		ft_quicksort(t_stacks *stacks, int amount);
+void		ft_quicksort(t_stacks *stacks, int amount, int first);
 
 //ps_operations:
 void		ft_psswap(t_stacks *stacks, char c);

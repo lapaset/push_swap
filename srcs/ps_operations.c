@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_operations.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:35:13 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/17 14:19:51 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/18 09:17:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 void		ft_psswap(t_stacks *stacks, char c)
 {
 	if (c == 'c')
+	{
 		ft_swap(stacks, 's');
-	else
-		ft_swap(stacks, c);
+		ft_printf("ss\n");
+		return ;
+	}
+	ft_swap(stacks, c);
 	ft_printf("s%c\n", c);
 }
 

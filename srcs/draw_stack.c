@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 16:59:12 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 17:54:43 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/12 13:52:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			ft_draw_stack(t_ptrs *ptrs, t_lst *stack, int start, char *color)
 				ft_print_layer(ptrs, clr, draw);
 			layer++;
 		}
-		ft_printf("nb: %d, ", stack->nb);
+		//ft_printf("nb: %d, ", stack->nb);
 		stack = stack->next;
 		i++;
 	}
