@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:27:23 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/18 10:00:37 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/18 14:06:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,39 +75,6 @@ int 	ft_move_from(char from, t_stacks *stacks, int pivot, int amount, int first)
 		}
 	}
 	return (rotated);
-}
-
-int 	ft_pivot(t_lst *lst, int average, int amount)
-{
-	int		pivot;
-	int		i;
-
-	pivot = lst->nb;
-	i = 0;
-	while (i < amount)
-	{
-		if (ft_abs(lst->nb - average) < ft_abs(pivot - average))
-			pivot = lst->nb;
-		lst = lst->next;
-		i++;
-	}
-	return (pivot);
-}
-
-int		ft_average(t_lst *lst, int amount)
-{
-	int		sum;
-	int		i;
-
-	sum = 0;
-	i = 0;
-	while (i < amount)
-	{
-		sum += lst->nb;
-		lst = lst->next;
-		i++;
-	}
-	return (sum / amount);
 }
 
 void	ft_quicksort_b(t_stacks *stacks, int amount, int first)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
+#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/17 13:39:04 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/19 11:02:21 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBDIR = libft
 _OBJS_CHECKER = checker.o make_list.o utilities.o operations.o instructions.o\
 	visualize.o draw_stack.o
 _OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o quicksort.o operations.o\
-	ps_operations.o
+	ps_operations.o combine_sort.o sort_utilities.o sort_utilities2.o\
+	cs_sort_stack_a.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 OBJS_PUSH_SWAP = $(patsubst %, $(ODIR)/%, $(_OBJS_PUSH_SWAP))
 GREEN = \033[1;32m

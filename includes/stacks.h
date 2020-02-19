@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:12:08 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/17 16:55:21 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/19 09:20:42 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct		s_stacks
 	t_lst			*a_end;
 	t_lst			*b;
 	t_lst			*b_end;
-	int				size;
+	int				a_len;
+	int				b_len;
+	//int				size;
 }					t_stacks;
 
 //make_list:

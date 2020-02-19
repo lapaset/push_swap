@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:34:35 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/12 13:34:49 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/19 10:16:09 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,6 @@ int *ft_shell_sort(int arr[], int len)
 			i++;
 		}
 		int k = 0;
-		/*while (k < len)
-		{
-			if (k % gap == 0)
-				ft_printf("{blue}");
-			ft_printf("%d ", arr[k]);
-			ft_printf("{eoc}");
-			k++;
-		} 
-		ft_printf("\n");*/
 		gap /= 2;
 	}
 	return (arr);
