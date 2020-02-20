@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:05:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 11:05:12 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 12:39:17 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ int		ft_find_smallest_since(t_lst *stack, int amount, int since)
 	int		next;
 
 	i = 0;
-	next = 10000000;
+	while (i < amount && stack && stack->nb < since)
+		stack = stack->next;
+	next = stack->nb;
 	while (i < amount && stack)
 	{
 		if (stack->nb == since + 1)
@@ -99,15 +101,15 @@ int		ft_find_biggest(t_lst *stack, int amount)
 	return (biggest);
 }
 
-
-//do something to imaginary nbrs
 int		ft_find_biggest_since(t_lst *stack, int amount, int since)
 {
 	int		i;
 	int		next;
 
 	i = 0;
-	next = -100000000;
+	while (i < amount && stack && stack->nb > since)
+		stack = stack->next;
+	next = stack->nb;
 	while (i < amount && stack)
 	{
 		if (stack->nb == since - 1)

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 11:05:36 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/19 11:39:20 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@ void		ft_quicksort(t_stacks *stacks, int amount, int first);
 void	    ft_quicksort2(t_stacks *stacks, int amount);
 
 //combine_sort:
-void        ft_sort(t_stacks *stacks, int amount);
+void        ft_sort(t_stacks *stacks);
 
 //cs_sort_stack_a:
-int		    ft_sort_stack_a(t_stacks *stacks, int a_amount);
+int		    ft_sort_a(t_stacks *stacks);
+
+//cs_split:
+int			ft_cs_split(int pivot, int b_pivot, t_stacks *stacks);
+
+//cs_utilities:
+int	        ft_average_under(int pivot, t_lst *lst);
+int         ft_pivot_under(t_lst *lst, int average);
 
 //sort_utilities:
 int		    ft_average(t_lst *lst, int amount);

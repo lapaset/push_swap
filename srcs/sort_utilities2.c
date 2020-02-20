@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 09:23:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 09:54:29 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 12:32:10 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int		ft_rotate_stack_to(int nb, char stack, t_stacks *stacks)
 	{
 		while (stacks->a->nb != nb)
 		{
-			ft_rotate(stacks, 'a');
+			ft_printf("smallest: %d", nb);
+			ft_print_lst(stacks->a);
+			ft_psrotate(stacks, 'a');
 			count++;
 		}
 	}
@@ -29,7 +31,7 @@ int		ft_rotate_stack_to(int nb, char stack, t_stacks *stacks)
 	{
 		while (stacks->b->nb != nb)
 		{
-			ft_rotate(stacks, 'b');
+			ft_psrotate(stacks, 'b');
 			count++;
 		}
 	}

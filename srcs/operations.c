@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 11:54:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 11:22:26 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 11:31:58 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	ft_push(t_stacks *stacks, char c)
 		stacks->b = temp;
 		if (!stacks->a->next)
 			stacks->a_end = stacks->a;
+		stacks->a_len++;
+		stacks->b_len--;
 		
 	}
 	else if (c == 'b' && stacks->a)
@@ -54,6 +56,8 @@ void	ft_push(t_stacks *stacks, char c)
 		stacks->a = temp;
 		if (!stacks->b->next)
 			stacks->b_end = stacks->b;
+		stacks->a_len--;
+		stacks->b_len++;
 	}
 	else
 		return ;

@@ -6,111 +6,11 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 11:05:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 12:54:42 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int     ft_check_if_rest_is_bigger(int pivot, t_lst *lst, int i, int amount)
-{
-	while (i < amount && lst->next)
-	{
-		if (lst->nb <= pivot)
-			return (0);
-		lst = lst->next;
-		i++;
-	}
-	return (1);
-}
-
-static int 	ft_pivot_under(t_lst *lst, int average)
-{
-	int		pivot;
-
-	pivot = lst->nb;
-	while (lst)
-	{
-		if (lst->nb == average)
-			return (average);
-		if (ft_abs(lst->nb - average) < ft_abs(pivot - average))
-			pivot = lst->nb;
-		lst = lst->next;
-	}
-	return (pivot);
-}
-
-static int		ft_average_under(int pivot, t_lst *lst)
-{
-	int		sum;
-	int		amount;
-
-	sum = 0;
-	amount = 0;
-	while (lst)
-	{
-		if (lst->nb < pivot)
-		{
-			sum += lst->nb;
-			amount++;
-		}
-		lst = lst->next;
-	}
-	return (sum / amount);
-}
-
-int    ft_initial_split(t_stacks *stacks, int amount, int pivot, int b_pivot)
-{
-	int     i;
-	int     a_amount;
-
-	i = 0;
-	a_amount = 0;
-	while (i < amount)
-	{
-		if (ft_check_if_rest_is_bigger(pivot, stacks->a, i, amount))
-			break ;
-		if (stacks->a->nb > pivot)
-		{
-			ft_psrotate(stacks, 'a');
-			a_amount++;
-		}
-		else if (stacks->a->nb > b_pivot)
-			ft_pspush(stacks, 'b');
-		else
-		{
-			ft_pspush(stacks, 'b');
-			ft_psrotate(stacks, 'b');
-		}
-		i++;
-	}
-	a_amount += amount - i;
-	return (a_amount);
-}
-
-int     ft_split_a(t_stacks *stacks, int amount, int a_pivot)
-{
-	int     i;
-	int     a_amount;
-	
-	i = 0;
-	a_amount = 0;
-	while (i < amount)
-	{
-		if (ft_check_if_rest_is_bigger(a_pivot, stacks->a, i, amount))
-			break ;
-		if (stacks->a->nb > a_pivot)
-		{
-			ft_psrotate(stacks, 'a');
-			a_amount++;
-		}
-		else
-			ft_pspush(stacks, 'b');
-		i++;
-	}
-	a_amount += amount - i;
-	return (a_amount);
-}
 
 int		ft_is_rotated(int biggest, t_lst *stack, int pivot)
 {
@@ -124,35 +24,45 @@ int		ft_is_rotated(int biggest, t_lst *stack, int pivot)
 }
 
 //here could take advantance on knowing the beginning of the lst before rotating
-int		ft_part_to_a(t_stacks *stacks, int pivot, int biggest, int b_amount)
+//every time rotated is 0 save the first node to be rotated, put it to null when rotated goes back to 0
+void	ft_part_to_a(t_stacks *stacks, int pivot, int biggest)
 {
 	int		rotated;
 
 	rotated = 0;
-	while (!(rotated == 0 && stacks->b->nb <= pivot))
+	while (rotated != 0 || stacks->b->nb > pivot)
 	{
-		if (!ft_is_rotated(biggest, stacks->b, pivot))
-			rotated += ft_rotate_stack_to(biggest, 'b', stacks);
-		else
+		if (ft_is_rotated(biggest, stacks->b, pivot))
+		{
+			//ft_printf("is rotated %d: ", biggest);
+			//ft_print_lst(stacks->b);
 			rotated -= ft_reverse_rotate_stack_to(biggest, 'b', stacks);
+		}
+		else
+		{
+			//ft_printf("not rotated %d: ", biggest);
+			//ft_print_lst(stacks->b);
+			rotated += ft_rotate_stack_to(biggest, 'b', stacks);
+			//ft_printf("pivot: %d, biggest: %d\n", pivot, biggest);
+			//ft_print_lst(stacks->b);
+			
+		}
 		ft_pspush(stacks, 'a');
-		b_amount--;
-		biggest = ft_find_biggest_since(stacks->b, b_amount, biggest);
+		biggest = ft_find_biggest_since(stacks->b, stacks->b_len, biggest);
+		//ft_printf("%d, %d", biggest, stacks->b_len);
 	}
-	return (b_amount);
 }
 
-void	ft_rest_to_a(t_stacks *stacks, int biggest, int b_amount)
+void	ft_rest_to_a(t_stacks *stacks, int biggest)
 {
-	while (b_amount > 2)
+	while (stacks->b_len > 2)
 	{
-		if (ft_distance(stacks->b, biggest) <= b_amount / 2)
+		if (ft_distance(stacks->b, biggest) <= stacks->b_len / 2)
 			ft_rotate_stack_to(biggest, 'b', stacks);
 		else
 			ft_reverse_rotate_stack_to(biggest, 'b', stacks);
 		ft_pspush(stacks, 'a');
-		b_amount--;
-		biggest = ft_find_biggest_since(stacks->b, b_amount, biggest);
+		biggest = ft_find_biggest_since(stacks->b, stacks->b_len, biggest);
 	}
 	if (stacks->b->nb < stacks->b->next->nb)
 		ft_psswap(stacks, 'b');
@@ -160,26 +70,35 @@ void	ft_rest_to_a(t_stacks *stacks, int biggest, int b_amount)
 	ft_pspush(stacks, 'a');
 }
 
-void    ft_sort(t_stacks *stacks, int amount)
+//maybe separate sort function that picks the most effective sorting method
+//could also count the moves required by each
+
+void    ft_sort(t_stacks *stacks)
 {
 	int     pivot;
 	int		a_pivot;
 	int     b_pivot;
-	int     a_amount;
-	int     b_amount;
 
-	pivot = ft_pivot(stacks->a, ft_average(stacks->a, amount), amount);
+	pivot = ft_pivot(stacks->a, ft_average(stacks->a, stacks->a_len),
+						stacks->a_len);
 	b_pivot = ft_pivot_under(stacks->a, ft_average_under(pivot, stacks->a));
-	a_amount = ft_initial_split(stacks, amount, pivot, b_pivot);
-	a_pivot = ft_pivot(stacks->a, ft_average(stacks->a, a_amount), a_amount);
-	a_amount = ft_split_a(stacks, a_amount, a_pivot);
-	b_amount = amount - a_amount;
-	ft_sort_stack_a(stacks, a_amount);
-	b_amount = ft_part_to_a(stacks, pivot, a_pivot, b_amount);
-	b_amount = ft_part_to_a(stacks, b_pivot, pivot, b_amount);
-	ft_rest_to_a(stacks, b_pivot, b_amount);
+	a_pivot = ft_cs_split(pivot, b_pivot, stacks);
+	ft_sort_a(stacks);
+	ft_part_to_a(stacks, pivot, a_pivot);
+	//ft_print_lst(stacks->b);
+	//ft_printf("b_pivot: %d pivot: %d\n", b_pivot, pivot);
+	//ft_printf("here\n");
+	ft_part_to_a(stacks, b_pivot, pivot);
+	//ft_printf("b_pivot: %d pivot: %d\n", b_pivot, pivot);
+	ft_rest_to_a(stacks, b_pivot);
 }
 
 //1210
 //844
 //620
+//829
+//716
+
+//check if the node is already at the right place
+//keep track on the smallest node
+//while looking for the biggest, push all smallest since to b
