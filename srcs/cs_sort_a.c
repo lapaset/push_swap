@@ -6,25 +6,11 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:55:54 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 12:59:59 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 13:10:48 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_smallest_to_the_biggest(t_stacks *stacks, int smallest, int biggest)
-{
-	if (ft_distance(stacks->a, smallest) <= stacks->a_len / 2)
-		ft_rotate_stack_to(smallest, 'a', stacks);
-	else
-		ft_reverse_rotate_stack_to(smallest, 'a', stacks);
-	ft_pspush(stacks, 'b');
-	if (stacks->a_len - ft_distance(stacks->a, biggest) <= stacks->a_len / 2)
-		ft_reverse_rotate_stack_end_to(biggest, 'a', stacks);
-	else
-		ft_rotate_stack_end_to(biggest, 'a', stacks);
-	ft_pspush(stacks, 'a');
-}
 
 int		ft_smallest_to_beginning_b(t_stacks *stacks, int smallest)
 {
@@ -73,8 +59,7 @@ int		ft_sort_a(t_stacks *stacks)
 	pushed = 0;
 	smallest = ft_find_smallest(stacks->a, stacks->a_len);
 	biggest = ft_find_biggest(stacks->a, stacks->a_len);
-	ft_smallest_to_the_biggest(stacks, smallest, biggest);
-	smallest_since = ft_find_smallest_since(stacks->a, stacks->a_len, smallest);
+	smallest_since = smallest;
 	while (!(ft_is_basically_sorted(stacks, smallest_since, biggest)))
 	{
 		smallest_since =

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 12:54:42 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/20 13:19:58 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,13 @@ void	ft_part_to_a(t_stacks *stacks, int pivot, int biggest)
 	rotated = 0;
 	while (rotated != 0 || stacks->b->nb > pivot)
 	{
-		if (ft_is_rotated(biggest, stacks->b, pivot))
+		if (stacks->b->nb != biggest && ft_is_rotated(biggest, stacks->b, pivot))
 		{
-			//ft_printf("is rotated %d: ", biggest);
-			//ft_print_lst(stacks->b);
 			rotated -= ft_reverse_rotate_stack_to(biggest, 'b', stacks);
 		}
-		else
+		else if (stacks->b->nb != biggest)
 		{
-			//ft_printf("not rotated %d: ", biggest);
-			//ft_print_lst(stacks->b);
 			rotated += ft_rotate_stack_to(biggest, 'b', stacks);
-			//ft_printf("pivot: %d, biggest: %d\n", pivot, biggest);
-			//ft_print_lst(stacks->b);
-			
 		}
 		ft_pspush(stacks, 'a');
 		biggest = ft_find_biggest_since(stacks->b, stacks->b_len, biggest);
@@ -98,6 +91,8 @@ void    ft_sort(t_stacks *stacks)
 //620
 //829
 //716
+//677
+//669
 
 //check if the node is already at the right place
 //keep track on the smallest node
