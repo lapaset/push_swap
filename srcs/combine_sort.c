@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 13:19:58 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/21 10:18:58 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,4 @@ void    ft_sort(t_stacks *stacks)
 
 //check if the node is already at the right place
 //keep track on the smallest node
-//while looking for the biggest, push all smallest since to b
+//search for two next nodes and swich them if needed?
