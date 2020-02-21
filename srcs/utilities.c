@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 15:28:42 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/21 15:47:32 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void	ft_print_lst(t_lst *lst)
 {
 	while (lst)
 	{
-		if (lst->nb < 6 && lst->nb > -48)
+		if (lst->nb < 1 && lst->nb > -52)
+			ft_printf("{blue}");
+		if (lst->nb < 48 && lst->nb > 0)
 			ft_printf("{red}");
-		else if (lst->nb > 4)
+		else if (lst->nb > 24)
 			ft_printf("{yellow}");
 		ft_printf("%d{eoc} ", lst->nb);
 		lst = lst->next;

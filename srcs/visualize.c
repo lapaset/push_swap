@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/12 14:55:51 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/21 16:14:43 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ft_draw(t_ptrs *ptrs)
 	ptrs->img_ptr = mlx_new_image(ptrs->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	ptrs->data_ptr = mlx_get_data_addr(ptrs->img_ptr, &bpp, &size_line, &endian);*/
 	ft_draw_stack(ptrs, ptrs->stacks->a, 0, "5500FF");
-	ft_draw_stack(ptrs, ptrs->stacks->a, 850, "00FFFF");
+	ft_draw_stack(ptrs, ptrs->stacks->b, 850, "00FFFF");
 	mlx_put_image_to_window(ptrs->mlx_ptr, ptrs->win_ptr, ptrs->img_ptr, 0, 0);
 	ft_printf("draw\n");
 }
@@ -87,7 +87,6 @@ int				ft_deal_key(int key, t_ptrs *ptrs)
 	ft_bzero(key_funcs, sizeof(void*) * 54);
 	key_funcs[53] = &ft_close;
 	key_funcs[49] = &ft_start;
-	//key_funcs[18] = &ft_swap;
 	if (key < 54)
 		key_funcs[key](ptrs);
 	return (1);

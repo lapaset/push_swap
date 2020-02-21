@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/19 11:39:20 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/21 16:41:19 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ int			ft_cs_split(int pivot, int b_pivot, t_stacks *stacks);
 //cs_utilities:
 int	        ft_average_under(int pivot, t_lst *lst);
 int         ft_pivot_under(t_lst *lst, int average);
+
+//pivot:
+int         ft_cs_pivot(t_stacks *stacks);
+int         ft_cs_pivot_under(int limit, t_stacks *stacks);
 
 //sort_utilities:
 int		    ft_average(t_lst *lst, int amount);

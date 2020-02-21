@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:27:23 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/21 10:19:07 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/21 11:58:34 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,45 @@ int 	ft_move_from(char from, t_stacks *stacks, int pivot, int amount, int first)
 			i--;
 		}
 	}
+
 	return (rotated);
+}
+
+void	ft_push_bigger_of_two_to_a(t_stacks *stacks)
+{
+	if (stacks->b->nb < stacks->b->next->nb)
+		ft_psswap(stacks, 'b');
+	ft_pspush(stacks, 'a');
+}
+
+void	ft_push_three_or_less_to_a(t_stacks *stacks, int amount)
+{
+		if (amount == 3)
+		{
+			if (stacks->b->nb < stacks->b->next->nb &&
+				stacks->b->nb < stacks->b->next->next->nb)
+			{
+				ft_psrotate(stacks, 'b');
+				ft_psswap(stacks, 'b');
+				ft_pspush(stacks, 'a');
+				if (stacks->b->nb > stacks->b_end->nb)
+				{
+					ft_pspush(stacks, 'a');
+					ft_psreverse_rotate(stacks, 'b');
+				}
+				else
+				{
+					ft_psreverse_rotate(stacks, 'b');
+					ft_push(stacks, 'a');
+				}
+				ft_pspush(stacks, 'a');
+				return ;
+			}
+			ft_push_bigger_of_two_to_a(stacks);
+		}
+		if (amount > 1)
+			ft_push_bigger_of_two_to_a(stacks);
+		ft_pspush(stacks, 'a');
 }
 
 void	ft_quicksort_b(t_stacks *stacks, int amount, int first)
@@ -104,35 +142,27 @@ void	ft_quicksort_b(t_stacks *stacks, int amount, int first)
 	int		pivot;
 	int		average;
 	//int		amount_next;
-	int 	i;
+	//int 	i;
 	int		rotated;
 
 	if (amount <= 3)
 	{
-		i = amount;
-		while (i)
-		{
-			ft_pspush(stacks, 'a');
-			i--;		
-		}
-		if (amount == 3)
-			ft_sort_three(stacks);
-		if (amount == 2)
-			ft_swap_if_needed(stacks, 'a');
+		//ft_printf("at b amount is less than 3: %d\n", amount);
+		ft_push_three_or_less_to_a(stacks, amount);
 		return ;
 	}
 	average = ft_average(stacks->b, amount);
 	pivot = ft_pivot(stacks->b, average, amount);
 	//ft_printf("amount: %d average: %d pivot: %d\n", amount, average, pivot);
-	ft_printf("at b before move stack a: ");
+	/*ft_printf("amount: %d at b before move stack a: ", amount);
 	ft_print_lst(stacks->a);
-	ft_printf("at b before move stack b: ");
-	ft_print_lst(stacks->b);
+	ft_printf("amount: %d at b before move stack b: ", amount);
+	ft_print_lst(stacks->b);*/
 	rotated = ft_move_from('b', stacks, pivot, amount, first);
-	ft_printf("at b after move stack a: ");
+	/*ft_printf("at b after move stack a: ");
 	ft_print_lst(stacks->a);
 	ft_printf("at b after move stack b: ");
-	ft_print_lst(stacks->b);
+	ft_print_lst(stacks->b);*/
 	ft_quicksort(stacks, amount - rotated, first);
 	ft_quicksort_b(stacks, rotated, first);
 }
@@ -148,15 +178,15 @@ void	ft_quicksort(t_stacks *stacks, int amount, int first)
 	{
 		average = ft_average(stacks->a, amount);
 		pivot = ft_pivot(stacks->a, average, amount);
-		ft_printf("at a before move stack a: ");
+		/*ft_printf("amount: %d at a before move stack a: ", amount);
 		ft_print_lst(stacks->a);
-		ft_printf("at a before move stack b: ");
-		ft_print_lst(stacks->b);
+		ft_printf("amount: %d at a before move stack b: ", amount);
+		ft_print_lst(stacks->b);*/
 		amount_next = ft_move_from('a', stacks, pivot, amount, first);
-		ft_printf("at a after move stack a: ");
+		/*ft_printf("at a after move stack a: ");
 		ft_print_lst(stacks->a);
 		ft_printf("at a after move stack b: ");
-		ft_print_lst(stacks->b);
+		ft_print_lst(stacks->b);*/
 		ft_quicksort(stacks, amount_next, first);
 
 		//ft_print_lst(stacks->a);
@@ -383,6 +413,8 @@ void	ft_quicksort(t_stacks *stacks, int amount, int first)
 //find out where the numbers to be moved are and if there are some left
 //maybe handle the cases when there are less than six numbers separately?
 //sort numbers before sending them back to a??
+
+//double linked list????
 
 //852
 //831
