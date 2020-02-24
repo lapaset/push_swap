@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/17 11:20:08 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/24 11:01:45 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int 	main(int arg, char **argv)
 	ft_print_result(stacks);
 	return (0);
 }
+
 	
 	/*ft_printf("Stack a at beginning:");
 	ft_print_lst(stacks->a);
