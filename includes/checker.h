@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/24 17:09:05 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/25 12:33:11 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 # define WIN_WIDTH 1700
 # define WIN_HEIGHT 1000
-# define MAX_INSTRUCTIONS 3000
+# define MAX_INSTRUCTIONS 2000
 # define MAX_PRINT 500
-# define MAX_SPEED 50000
+# define MIN_SPEED 50000
 
 typedef struct 		s_mlx
 {
@@ -33,13 +33,15 @@ typedef struct 		s_mlx
 	t_stacks		*stacks;
 	int				min;
 	int				max;
-	char			**instructions;
+	char			**moves;
 	int				i;
 	int				drawn;
 	int				column_width;
 	int				multiply;
 	int				speed;
 	int				y_zero;
+	void			(**operations)(t_stacks*, char);
+	char			**instructions;
 }					t_mlx;
 
 typedef struct 		s_color
@@ -54,11 +56,17 @@ void				ft_deal_instructions(t_stacks *stacks);
 char				**ft_instructions(void);
 void				ft_free_instructions(char **instructions);
 
-//ft_visualize:
+//visualize:
 void				ft_visualize(t_stacks *stacks);
 void				ft_close(t_mlx *ptrs);
 
-//ft_draw_stack:
+//draw_stack:
 void				ft_draw_stack(t_mlx *ptrs, t_lst *stack, int x, char *color);
+
+//animate:
+void				ft_show_moves(t_mlx *mlx, int moves_amount);
+
+//key_events:
+int					ft_deal_key(int key, t_mlx *mlx);
 
 #endif

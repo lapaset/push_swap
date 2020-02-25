@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 10:52:52 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 10:54:16 by llahti           ###   ########.fr       */
+/*   Created: 2020/02/25 12:24:02 by llahti            #+#    #+#             */
+/*   Updated: 2020/02/25 12:48:24 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-int		main(int arg, char **argv)
+void			ft_close(t_mlx *mlx)
 {
-	t_stacks	*stacks;
+	//ft_printf("speed: %d\n", mlx->speed);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	ft_print_result(mlx->stacks);
+	exit(1);
+}
 
-	if (arg == 1)
-		return (1);
-	stacks = (t_stacks*)malloc(sizeof(t_stacks));
-	ft_params_to_list(arg, argv, stacks);
-	if (!ft_list_is_sorted(stacks->a))
-		ft_sort(stacks);
-	/*ft_printf("stack a: ");
-	ft_print_lst(stacks->a);
-	ft_printf("stack b: ");
-	ft_print_lst(stacks->b);*/
-	return (0);
+int				ft_deal_key(int key, t_mlx *mlx)
+{
+	//ft_printf("%d\n", key);
+	void	(*key_funcs[54])(t_mlx*);
+	ft_bzero(key_funcs, sizeof(void*) * 54);
+	key_funcs[53] = &ft_close;
+	if (key < 54)
+		key_funcs[key](mlx);
+	return (1);
 }

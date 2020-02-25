@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 16:59:12 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/24 17:03:31 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/25 12:54:26 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void		ft_print_layer(t_mlx *mlx, t_color *clr, int x, int below_zero)
 	i = 0;
 	while (i < mlx->column_width)
 	{
+		//check if is outside the limits
 		mlx->data_ptr[x + (i * 4)] =
 			mlx_get_color_value(mlx->mlx_ptr, clr->r);
 		mlx->data_ptr[x + (i * 4) + 1] =
@@ -76,11 +77,9 @@ void			ft_draw_stack(t_mlx *mlx, t_lst *stack, int start_x, char *color)
 	int		i;
 	int		draw;
 
-//deal with zero
 	clr = NULL;
 	clr = ft_get_color(clr, color);
 	i = 0;
-	//ft_printf("here at draw stack");
 	while (stack)
 	{
 		layer = 0;
@@ -95,7 +94,6 @@ void			ft_draw_stack(t_mlx *mlx, t_lst *stack, int start_x, char *color)
 				ft_print_layer(mlx, clr, draw, stack->nb < 0);
 			layer++;
 		}
-		//ft_printf("%d printed\n", stack->nb);
 		stack = stack->next;
 		i++;
 	}

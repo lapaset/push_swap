@@ -6,126 +6,43 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/24 17:10:28 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/25 12:54:40 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "stdio.h"
 
-int			ft_fill_image(t_mlx *mlx)
-{
-	int		i;
-
-	i = 0;
-	while (i < WIN_HEIGHT * WIN_WIDTH * 4)
-	{
-		mlx->data_ptr[i] = mlx_get_color_value(mlx->mlx_ptr, 0);
-		i++;
-		mlx->data_ptr[i] = mlx_get_color_value(mlx->mlx_ptr, 0);
-		i++;
-		mlx->data_ptr[i] = mlx_get_color_value(mlx->mlx_ptr, 0);
-		i++;
-		i++;
-	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
-	return (1);
-}
-
-int			ft_draw(t_mlx *mlx)
-{
-	void	(**operations)(t_stacks*, char);
-	char	**instructions;
-	int		i;
-
-	operations = ft_operations();
-	instructions = ft_instructions();
-	if (!mlx->drawn && mlx->instructions[mlx->i] != NULL)
-	{
-		i = 0;
-		while (i < 11)
-		{
-			if (ft_strequ(instructions[i], mlx->instructions[mlx->i]))
-			{
-				operations[i](mlx->stacks, mlx->instructions[mlx->i][ft_strlen(mlx->instructions[mlx->i]) - 1]);
-				if (mlx->speed)
-					usleep(mlx->speed);
-				ft_fill_image(mlx);
-				ft_draw_stack(mlx, mlx->stacks->a, 0, "5500FF");
-				ft_draw_stack(mlx, mlx->stacks->b, WIN_WIDTH / 2 + 10, "00FFFF");
-				mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
-				break ;
-			}
-			i++;
-		}
-		if (i == 11)
-			ft_error();
-		mlx->i++;
-	}
-	else
-		mlx->drawn = 1;
-	//ft_free_instructions(instructions);
-	//free(operations);
-	return (1);
-}
-
 int			ft_read(t_mlx *mlx)
 {
 	int		i;
 	char	*input;
 
-	mlx->instructions = (char**)malloc(sizeof(char*) * MAX_INSTRUCTIONS + 1);
+	mlx->moves = (char**)malloc(sizeof(char*) * MAX_INSTRUCTIONS + 1);
 	i = 0;
-	//mlx->instructions[i] = (char*)malloc(sizeof(char) * 4);
 	while (get_next_line(0, &input) != 0)
 	{
-		mlx->instructions[i] = ft_stralloc(input);
+		mlx->moves[i] = ft_stralloc(input);
 		i++;
 	}
-	mlx->instructions[i] = NULL;
+	mlx->moves[i] = NULL;
 	return (i);
 }
 
-void			ft_close(t_mlx *mlx)
-{
-	ft_printf("speed: %d\n", mlx->speed);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	ft_print_result(mlx->stacks);
-	exit(1);
-}
-
-void			ft_start(t_mlx *mlx)
-{
-	mlx_loop_hook(mlx->mlx_ptr, ft_draw, mlx);
-}
-
-int				ft_deal_key(int key, t_mlx *mlx)
-{
-	ft_printf("%d\n", key);
-	void	(*key_funcs[54])(t_mlx*);
-	ft_bzero(key_funcs, sizeof(void*) * 54);
-	key_funcs[53] = &ft_close;
-	//key_funcs[49] = &ft_start;
-	if (key < 54)
-		key_funcs[key](mlx);
-	return (1);
-}
-
-void			ft_count_dimensions_and_speed(t_mlx *mlx, int instructions)
+void			ft_count_dimensions(t_mlx *mlx)
 {
 	mlx->column_width = (WIN_WIDTH / mlx->stacks->a_len - 1) / 2;
-	//todo: count zero y 
 	if (mlx->max <= 0)
 		mlx->y_zero = 0;
 	else if (mlx->min >= 0)
 		mlx->y_zero = WIN_HEIGHT;
 	else
-		mlx->y_zero = WIN_HEIGHT / 2;
+		mlx->y_zero = WIN_HEIGHT  * (mlx->max) / (mlx->max - mlx->min);
 	mlx->multiply = 1;
 	while ((mlx->max > 0 && mlx->y_zero - (mlx->multiply + 1) * mlx->max > 0) || 
-			(mlx->min < 0 && mlx->y_zero - (mlx->multiply + 1) * mlx->min < WIN_HEIGHT))
+			(mlx->min < 0 && mlx->y_zero -
+			(mlx->multiply + 1) * mlx->min < WIN_HEIGHT))
 		mlx->multiply++;
-	mlx->speed = 60000 - 60000 * instructions / MAX_INSTRUCTIONS;
 }
 
 int				ft_scale(t_mlx *mlx)
@@ -135,7 +52,7 @@ int				ft_scale(t_mlx *mlx)
 	temp = mlx->stacks->a;
 	mlx->min = temp->nb;
 	mlx->max = temp->nb;
-	while (temp->next)
+	while (temp)
 	{
 		if (temp->nb < mlx->min)
 			mlx->min = temp->nb;
@@ -146,12 +63,35 @@ int				ft_scale(t_mlx *mlx)
 	return (mlx->max - mlx->min);
 }
 
-void			ft_init_image(t_mlx *mlx)
+int				ft_is_visualisable(t_mlx *mlx)
+{
+	//check if the amount is too big
+	if (ft_scale(mlx) > WIN_HEIGHT - 10)
+		ft_printf("Scale %d is too big to be visualized. Maximum is %d\n",
+		 mlx->max - mlx->min, WIN_HEIGHT - 10);
+	else if (mlx->max > WIN_HEIGHT - 10)
+		ft_printf("Max value %d is too big to be visualized. Max is %d\n",
+		 mlx->max, WIN_HEIGHT - 10);
+	else if (mlx->min < -1 * (WIN_HEIGHT - 10))
+		ft_printf("Min value %d is too small to be visualized. Min is %d\n",
+		 mlx->min, WIN_HEIGHT - 10);
+	else
+	{
+		ft_count_dimensions(mlx);
+		return (1);
+	}
+	return (0);
+}
+
+void			ft_init_mlx(t_mlx *mlx)
 {
 	int		bpp;
 	int		size_line;
 	int		endian;
 
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr =
+		mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Le visualizer");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	mlx->data_ptr = mlx_get_data_addr(mlx->img_ptr, &bpp, &size_line, &endian);
 }
@@ -159,31 +99,22 @@ void			ft_init_image(t_mlx *mlx)
 void			ft_visualize(t_stacks *stacks)
 {
 	t_mlx		*mlx;
-	int			instructions;
+	int			moves_amount;
 
 	mlx = (t_mlx*)malloc(sizeof(t_mlx));
 	mlx->stacks = stacks;
-	mlx->drawn = 0;
-	mlx->i = 0;
-
-	//make a function to check if stack fits the visualizer
-	if (ft_scale(mlx) > 990)
+	if (!ft_is_visualisable(mlx))
 	{
-		ft_printf("The scale is too big to be visualized. Scale is %d when maximum is 980\n", mlx->max - mlx->min);
+		//free(mlx);
 		ft_deal_instructions(stacks);
 		return ;
 	}
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr =
-		mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Le visualizer");
-	ft_init_image(mlx);
+	ft_init_mlx(mlx);
 	mlx_key_hook(mlx->win_ptr, ft_deal_key, mlx);
-	//read the instructions
-	instructions = ft_read(mlx);
-	ft_printf("instructions: %d\n", instructions);
-	ft_count_dimensions_and_speed(mlx, instructions);
-	//draw the instructions
-	mlx_loop_hook(mlx->mlx_ptr, ft_draw, mlx);
+	moves_amount = ft_read(mlx);
+	ft_draw_stack(mlx, mlx->stacks->a, 0, "5500FF");
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
+	if (moves_amount > 0)
+		ft_show_moves(mlx, moves_amount);
 	mlx_loop(mlx->mlx_ptr);
-	//ft_fill_image(mlx);
 }
