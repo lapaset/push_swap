@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 12:33:11 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 09:07:37 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include "stacks.h"
 # include <fcntl.h>
 
-# define WIN_WIDTH 1700
-# define WIN_HEIGHT 1000
-# define MAX_INSTRUCTIONS 2000
+# define WIN_WIDTH 1300
+# define WIN_HEIGHT 800
+# define MAX_MOVES 3000
 # define MAX_PRINT 500
 # define MIN_SPEED 50000
 

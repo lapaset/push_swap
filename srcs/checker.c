@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 12:49:17 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/25 15:13:50 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int 	main(int arg, char **argv)
 		ft_visualize(stacks);
 	}
 	ft_print_result(stacks);
+	//ft_print_lst(stacks->a);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:20:24 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 12:32:47 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 09:05:55 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_move(t_mlx *mlx, int i)
 			usleep(mlx->speed);
 		ft_fill_image(mlx);
 		ft_draw_stack(mlx, mlx->stacks->a, 0, "5500FF");
-		ft_draw_stack(mlx, mlx->stacks->b, WIN_WIDTH / 2 + 10, "00FFFF");
+		ft_draw_stack(mlx, mlx->stacks->b, WIN_WIDTH / 2, "00FFFF");
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 		return (1);
 	}
@@ -78,6 +78,6 @@ void			ft_show_moves(t_mlx *mlx, int moves_amount)
 	mlx->i = 0;
 	mlx->operations = ft_operations();
 	mlx->instructions = ft_instructions();
-	mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / MAX_INSTRUCTIONS;
+	mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / MAX_MOVES;
 	mlx_loop_hook(mlx->mlx_ptr, ft_draw, mlx);
 }

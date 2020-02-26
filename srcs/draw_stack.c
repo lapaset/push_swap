@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 16:59:12 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 12:54:26 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 08:53:24 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,15 @@ static void		ft_print_layer(t_mlx *mlx, t_color *clr, int x, int below_zero)
 	i = 0;
 	while (i < mlx->column_width)
 	{
-		//check if is outside the limits
-		mlx->data_ptr[x + (i * 4)] =
-			mlx_get_color_value(mlx->mlx_ptr, clr->r);
-		mlx->data_ptr[x + (i * 4) + 1] =
-			mlx_get_color_value(mlx->mlx_ptr, clr->g);
-		mlx->data_ptr[x + (i * 4) + 2] = 
-			mlx_get_color_value(mlx->mlx_ptr, clr->b);
+		if (x + (i * 4) + 2 < WIN_HEIGHT * WIN_WIDTH * 4)
+		{		//check if is outside the limits
+			mlx->data_ptr[x + (i * 4)] =
+				mlx_get_color_value(mlx->mlx_ptr, clr->r);
+			mlx->data_ptr[x + (i * 4) + 1] =
+				mlx_get_color_value(mlx->mlx_ptr, clr->g);
+			mlx->data_ptr[x + (i * 4) + 2] = 
+				mlx_get_color_value(mlx->mlx_ptr, clr->b);
+		}
 		i++;
 	}
 }
@@ -75,7 +77,7 @@ void			ft_draw_stack(t_mlx *mlx, t_lst *stack, int start_x, char *color)
 	int		layer;
 	t_color *clr;
 	int		i;
-	int		draw;
+	int		draw_x;
 
 	clr = NULL;
 	clr = ft_get_color(clr, color);
@@ -87,11 +89,11 @@ void			ft_draw_stack(t_mlx *mlx, t_lst *stack, int start_x, char *color)
 				(stack->nb < 0 && layer < mlx->multiply * stack->nb * -1))
 		{
 			if (stack->nb < 0)
-				draw = start_x * 4 + (mlx->column_width + 1) * i * 4 + WIN_WIDTH * 4 * (mlx->y_zero + layer);
+				draw_x = start_x * 4 + (mlx->column_width + 1) * i * 4 + WIN_WIDTH * 4 * (mlx->y_zero + layer);
 			else
-				draw = start_x * 4 + (mlx->column_width + 1) * i * 4 + WIN_WIDTH * 4 * (mlx->y_zero - layer);
-			if (draw > 0)
-				ft_print_layer(mlx, clr, draw, stack->nb < 0);
+				draw_x = start_x * 4 + (mlx->column_width + 1) * i * 4 + WIN_WIDTH * 4 * (mlx->y_zero - layer);
+			if (draw_x > 0)
+				ft_print_layer(mlx, clr, draw_x, stack->nb < 0);
 			layer++;
 		}
 		stack = stack->next;

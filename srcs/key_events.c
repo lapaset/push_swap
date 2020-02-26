@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:24:02 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 12:48:24 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/25 15:37:41 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void			ft_close(t_mlx *mlx)
 	//ft_printf("speed: %d\n", mlx->speed);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	ft_print_result(mlx->stacks);
+	//ft_print_lst(mlx->stacks->a);
 	exit(1);
 }
 
