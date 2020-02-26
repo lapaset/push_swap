@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 09:07:11 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 11:18:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void			ft_count_dimensions(t_mlx *mlx)
 	else if (mlx->min >= 0)
 		mlx->y_zero = WIN_HEIGHT;
 	else
-		mlx->y_zero = WIN_HEIGHT / 2;
-		//mlx->y_zero = WIN_HEIGHT  * (mlx->max) / ft_abs(mlx->max - mlx->min);
+		mlx->y_zero = WIN_HEIGHT * ft_abs(mlx->max) / (mlx->max - mlx->min);
 	mlx->multiply = 1;
 	while ((mlx->max > 0 && mlx->y_zero - (mlx->multiply + 1) * mlx->max > 0) || 
 			(mlx->min < 0 && mlx->y_zero -
@@ -68,18 +67,17 @@ int				ft_scale(t_mlx *mlx)
 
 int				ft_is_visualisable(t_mlx *mlx)
 {
-	//check if the amount is too big
 	if (WIN_WIDTH / 2 / mlx->stacks->a_len - 1 < 2)
 		ft_printf("Too many values for this window width.\n");
-	else if (ft_scale(mlx) > WIN_HEIGHT - 10)
+	else if (ft_scale(mlx) > WIN_HEIGHT - 1)
 		ft_printf("Scale %d is too big to be visualized. Maximum is %d\n",
-		 mlx->max - mlx->min, WIN_HEIGHT - 10);
-	else if (mlx->max > WIN_HEIGHT - 10)
+		 mlx->max - mlx->min, WIN_HEIGHT - 1);
+	else if (mlx->max > WIN_HEIGHT - 1)
 		ft_printf("Max value %d is too big to be visualized. Max is %d\n",
-		 mlx->max, WIN_HEIGHT - 10);
-	else if (mlx->min < -1 * (WIN_HEIGHT - 10))
+		 mlx->max, WIN_HEIGHT - 1);
+	else if (mlx->min < -1 * (WIN_HEIGHT - 1))
 		ft_printf("Min value %d is too small to be visualized. Min is %d\n",
-		 mlx->min, WIN_HEIGHT - 10);
+		 mlx->min, -1 * (WIN_HEIGHT - 1));
 	else
 	{
 		ft_count_dimensions(mlx);

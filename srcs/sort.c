@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 10:52:52 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 11:24:41 by llahti           ###   ########.fr       */
+/*   Created: 2020/02/26 11:23:37 by llahti            #+#    #+#             */
+/*   Updated: 2020/02/26 16:01:22 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		main(int arg, char **argv)
+void	ft_sort_three(t_stacks *stacks)
 {
-	t_stacks	*stacks;
+	(void)stacks;
+	//132 231 213 321 312
+}
 
-	if (arg == 1)
-		return (1);
-	stacks = (t_stacks*)malloc(sizeof(t_stacks));
-	ft_params_to_list(arg, argv, stacks);
-	if (!ft_list_is_sorted(stacks->a))
-		ft_sort(stacks, arg - 1);
-	return (0);
+void	ft_sort(t_stacks *stacks, int amount)
+{
+	if (ft_is_basically_sorted(stacks, ft_find_the_smallest(stacks->a), ft_find_the_biggest(stacks->a)))
+		return ;
+	// upper covers sorting two and sorting three when 312
+	if (amount > 0)
+		ft_combine_sort(stacks);
 }

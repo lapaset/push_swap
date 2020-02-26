@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/21 15:47:32 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 13:01:25 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_print_lst(t_lst *lst)
 
 int		ft_list_is_sorted(t_lst *stack)
 {
-	//remove print
-	//ft_print_lst(stack);
 	while (stack->next)
 	{
 		if (stack->nb > stack->next->nb)
@@ -41,8 +39,6 @@ int		ft_list_is_sorted(t_lst *stack)
 	return (1);
 }
 
-
-//maybe this to another c file
 void	ft_print_result(t_stacks *stacks)
 {
 	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)

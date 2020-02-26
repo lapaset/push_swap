@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:55:54 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/25 10:54:11 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 14:18:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 int		ft_smallest_to_beginning_b(t_stacks *stacks, int smallest)
 {
-	if (ft_distance(stacks->a, smallest) <= stacks->a_len / 2)
-	{
-
+	if (!ft_is_rotated(stacks, 'a', smallest))
 		ft_rotate_stack_to(smallest, 'a', stacks);
-	}
 	else
 		ft_reverse_rotate_stack_to(smallest, 'a', stacks);
 	ft_pspush(stacks, 'b');
-	return (ft_find_smallest_since(stacks->a, stacks->a_len, smallest));
+	return (ft_find_next_smallest(stacks->a, smallest));
 }
 
 int		ft_is_basically_sorted(t_stacks *stacks, int smallest, int biggest)
@@ -44,8 +41,10 @@ int		ft_is_basically_sorted(t_stacks *stacks, int smallest, int biggest)
 	}
 	if (first != smallest && first < temp->nb)
 		return (0);
-	while (stacks->a->nb != smallest)
-		ft_psrotate(stacks, 'a');
+	if (!ft_is_rotated(stacks, 'a', smallest))
+		ft_rotate_stack_to(smallest, 'a', stacks);
+	else
+		ft_reverse_rotate_stack_to(smallest, 'a', stacks);
 	return (1);
 }
 
@@ -57,8 +56,8 @@ int		ft_sort_a(t_stacks *stacks)
 	int		pushed;
 	
 	pushed = 0;
-	smallest = ft_find_smallest(stacks->a, stacks->a_len);
-	biggest = ft_find_biggest(stacks->a, stacks->a_len);
+	smallest = ft_find_the_smallest(stacks->a);
+	biggest = ft_find_the_biggest(stacks->a);
 	smallest_since = smallest;
 	while (!(ft_is_basically_sorted(stacks, smallest_since, biggest)))
 	{
@@ -71,6 +70,5 @@ int		ft_sort_a(t_stacks *stacks)
 		ft_pspush(stacks, 'a');
 		pushed--;
 	}
-
 	return (smallest);
 }

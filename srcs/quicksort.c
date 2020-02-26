@@ -6,11 +6,30 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:27:23 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/21 11:58:34 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 16:00:48 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int 	ft_pivot(t_lst *stack, int average, int amount)
+{
+	int		pivot;
+	int		i;
+
+	pivot = stack->nb;
+	i = 0;
+	while (i < amount && stack)
+	{
+		if (stack->nb == average)
+			return (average);
+		if (ft_abs(stack->nb - average) < ft_abs(pivot - average))
+			pivot = stack->nb;
+		stack = stack->next;
+		i++;
+	}
+	return (pivot);
+}
 
 void	ft_swap_if_needed(t_stacks *stacks, char c)
 {
@@ -47,7 +66,7 @@ void	ft_sort_list_of_three(t_stacks *stacks)
 		ft_psreverse_rotate(stacks, 'a');
 }
 
-void	ft_sort_three(t_stacks *stacks)
+void	ft_qs_sort_three(t_stacks *stacks)
 {
 	if (ft_list_is_sorted(stacks->a))
 		return ;
@@ -196,7 +215,7 @@ void	ft_quicksort(t_stacks *stacks, int amount, int first)
 		ft_quicksort_b(stacks, rest, first);
 	}
 	else if (amount == 3)
-		ft_sort_three(stacks);
+		ft_qs_sort_three(stacks);
 	else if (amount == 2)
 		ft_swap_if_needed(stacks, 'a');
 }

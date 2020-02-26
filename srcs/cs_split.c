@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 11:03:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/21 16:45:43 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 12:59:23 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
 		}
 		ft_pspush(stacks, 'b');
 		pushed++;
-		if (stacks->b->nb <= b_pivot)
+		if (stacks->b->nb <= b_pivot && stacks->b_len > 1)
 			ft_psrotate(stacks, 'b');
 		i++;
 	}

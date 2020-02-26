@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:20:24 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 09:05:55 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 11:05:47 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void			ft_show_moves(t_mlx *mlx, int moves_amount)
 	mlx->i = 0;
 	mlx->operations = ft_operations();
 	mlx->instructions = ft_instructions();
-	mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / MAX_MOVES;
+	if (moves_amount > 100)
+		mlx->speed = 0;
+	else
+		mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / MAX_MOVES;
 	mlx_loop_hook(mlx->mlx_ptr, ft_draw, mlx);
 }
