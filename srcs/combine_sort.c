@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   combine_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 14:23:26 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 17:40:31 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,6 @@ void	ft_push_to_a_and_swap_if_needed(t_stacks *stacks)
 		ft_psswap(stacks, 'a');
 }
 
-int		ft_rotate_stack_to_biggest(t_stacks *stacks, int pivot, int biggest,
-			int second_biggest)
-{
-	int		rotated;
-	int		is_rotated;
-
-	rotated = 0;
-	is_rotated = ft_nb_is_in_the_rotated(biggest, stacks->b, pivot);	
-	while (stacks->b->nb != biggest)
-	{
-		if (stacks->b->nb == second_biggest)
-			ft_pspush(stacks, 'a');
-		else if (is_rotated)
-		{
-			ft_psreverse_rotate(stacks, 'b');
-			rotated--;
-		}
-		else
-		{
-			ft_psrotate(stacks, 'b');
-			rotated++;
-		}
-	}
-	return (rotated);
-}
-
 int		ft_part_size(t_lst *stack, int pivot)
 {
 	int size;
@@ -71,29 +45,46 @@ int		ft_part_size(t_lst *stack, int pivot)
 	return (size);
 }
 
+void	ft_move_all_but_two(t_stacks *stacks, int biggest, int pivot, int part_size)
+{
+	int		second_biggest;
+	int		is_rotated;
+
+	while (part_size > 2)
+	{
+		second_biggest = ft_find_next_biggest(stacks->b, biggest);
+		is_rotated = ft_nb_is_in_the_rotated(biggest, stacks->b, pivot);	
+		while (stacks->b->nb != biggest)
+		{
+			if (stacks->b->nb == second_biggest)
+			{
+				ft_pspush(stacks, 'a');
+				part_size--;
+			}
+			else if (is_rotated)
+				ft_psreverse_rotate(stacks, 'b');
+			else
+				ft_psrotate(stacks, 'b');
+		}
+		ft_push_to_a_and_swap_if_needed(stacks);
+		part_size--;
+		if (part_size > 2)
+			biggest = ft_find_next_biggest(stacks->b, biggest);
+	}
+}
+
 void	ft_part_to_a(t_stacks *stacks, int pivot, int biggest)
 {
-	int		rotated;
-	int		second_biggest;
+	int		part_size;
 
-	if (ft_part_size(stacks->b, pivot) < 3)
-	{
-		ft_pspush(stacks, 'a');
-		if (stacks->b_len > 1 && stacks->b->next->nb > pivot)
-			ft_push_to_a_and_swap_if_needed(stacks);
-		return ;
-	}
-	rotated = 0;
-	second_biggest = ft_find_next_biggest(stacks->b, biggest);
-	while (rotated != 0 || stacks->b->nb > pivot)
-	{
-		rotated +=
-			ft_rotate_stack_to_biggest(stacks, pivot, biggest, second_biggest);
+	part_size = ft_part_size(stacks->b, pivot);
+	if (part_size > 2)
+		ft_move_all_but_two(stacks, biggest, pivot, part_size);
+	while (stacks->b_end->nb > pivot)
+		ft_psreverse_rotate(stacks, 'b');
+	ft_pspush(stacks, 'a');
+	if (stacks->b && stacks->b->nb > pivot)
 		ft_push_to_a_and_swap_if_needed(stacks);
-		biggest = ft_find_next_biggest(stacks->b, biggest);
-		second_biggest =
-			ft_find_next_biggest(stacks->b, biggest);
-	}
 }
 
 void	ft_rest_to_a(t_stacks *stacks, int biggest)

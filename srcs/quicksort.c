@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:27:23 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 16:00:48 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 17:01:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_swap_if_needed(t_stacks *stacks, char c)
 
 void	ft_swap_if_first_is_bigger(t_stacks *stacks, char c)
 {
-	if (stacks->b->nb > stacks->b->next->nb)
+	if (stacks->a->nb > stacks->a->next->nb)
 		ft_psswap(stacks, c);
 }
 

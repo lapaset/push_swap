@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
+#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/26 11:25:33 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/26 17:01:24 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIB = libft/libft.a
 LIBDIR = libft
 _OBJS_CHECKER = checker.o make_list.o utilities.o operations.o instructions.o\
 	visualize.o draw_stack.o animate.o key_events.o
-_OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o quicksort.o operations.o\
+_OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o operations.o\
 	ps_operations.o combine_sort.o sort_utilities.o sort_utilities2.o\
 	cs_sort_a.o cs_utilities.o cs_split.o pivot.o sort.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))

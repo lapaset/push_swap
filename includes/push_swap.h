@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 14:23:07 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 09:57:34 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	    ft_quicksort2(t_stacks *stacks, int amount);
 
 //combine_sort:
 void        ft_combine_sort(t_stacks *stacks);
+void	    ft_rest_to_a(t_stacks *stacks, int biggest);
 
 //cs_sort_a:
 int		    ft_sort_a(t_stacks *stacks);
@@ -28,6 +29,7 @@ int		    ft_is_basically_sorted(t_stacks *stacks, int smallest, int biggest);
 
 //cs_split:
 int			ft_cs_split(int pivot, int b_pivot, t_stacks *stacks);
+void        ft_a_split(t_stacks *stacks, int a_pivot);
 
 //cs_utilities:
 int	        ft_average_under(int pivot, t_lst *lst);
@@ -59,3 +61,4 @@ void		ft_psreverse_rotate(t_stacks *stacks, char c);
 
 //sort:
 void	    ft_sort(t_stacks *stacks, int amount);
+void	    ft_sort_a_of_three(t_stacks *stacks);

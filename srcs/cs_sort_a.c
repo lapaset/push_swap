@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cs_sort_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:55:54 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 14:18:01 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/26 17:38:46 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		ft_sort_a(t_stacks *stacks)
 	smallest_since = smallest;
 	while (!(ft_is_basically_sorted(stacks, smallest_since, biggest)))
 	{
+		if (stacks->a_len == 3)
+			ft_sort_a_of_three(stacks);
 		smallest_since =
 			ft_smallest_to_beginning_b(stacks, smallest_since);
 		pushed++;
