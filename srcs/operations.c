@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 11:54:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 11:31:58 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:08:23 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_swap(t_stacks *stacks, char c)
 {
 	t_lst	*stack;
-	int 	temp;
+	int		temp;
 
 	if (c == 'a' && stacks->a && stacks->a->next)
 		stack = stacks->a;
@@ -47,7 +47,6 @@ void	ft_push(t_stacks *stacks, char c)
 			stacks->a_end = stacks->a;
 		stacks->a_len++;
 		stacks->b_len--;
-		
 	}
 	else if (c == 'b' && stacks->a)
 	{
@@ -87,14 +86,14 @@ void	ft_rotate(t_stacks *stacks, char c)
 		ft_rotate(stacks, 'b');
 	}
 	else
-		return;
+		return ;
 }
 
-void	ft_reverse_rotate(t_stacks *stacks, char c)
+void	ft_move_from_end_to_start(t_stacks *stacks, char stack)
 {
 	t_lst	*temp;
 
-	if (c == 'a' && stacks->a != stacks->a_end)
+	if (stack == 'a' && stacks->a != stacks->a_end)
 	{
 		temp = stacks->a;
 		while (temp->next != stacks->a_end)
@@ -103,7 +102,7 @@ void	ft_reverse_rotate(t_stacks *stacks, char c)
 		temp->next = NULL;
 		stacks->a_end = temp;
 	}
-	else if (c == 'b' && stacks->b != stacks->b_end)
+	else if (stack == 'b' && stacks->b != stacks->b_end)
 	{
 		temp = stacks->b;
 		while (temp->next != stacks->b_end)
@@ -112,16 +111,22 @@ void	ft_reverse_rotate(t_stacks *stacks, char c)
 		temp->next = NULL;
 		stacks->b_end = temp;
 	}
+}	
+
+void	ft_reverse_rotate(t_stacks *stacks, char c)
+{
+	if (c == 'a' || c == 'b')
+		ft_move_from_end_to_start(stacks, c);
 	else if (c == 'r')
 	{
 		ft_reverse_rotate(stacks, 'a');
 		ft_reverse_rotate(stacks, 'b');
 	}
 	else
-		return;
+		return ;
 }
 
-void			(**ft_operations(void))(t_stacks*, char)
+void	(**ft_operations(void))(t_stacks*, char)
 {
 	void	(**operations)(t_stacks*, char);
 

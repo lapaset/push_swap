@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utilities2.c                                  :+:      :+:    :+:   */
+/*   rotate_to.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/19 09:23:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 13:01:54 by llahti           ###   ########.fr       */
+/*   Created: 2020/02/27 18:00:01 by llahti            #+#    #+#             */
+/*   Updated: 2020/02/27 18:12:20 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		ft_rotate_stack_to(int nb, char stack, t_stacks *stacks)
 	{
 		while (stacks->a->nb != nb)
 		{
-
 			ft_psrotate(stacks, 'a');
 			count++;
 		}

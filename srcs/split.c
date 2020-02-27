@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 11:03:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 12:59:23 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 17:47:29 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
+int		ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 {
 	while (i < len && lst->next)
 	{
@@ -24,12 +24,12 @@ int     ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 	return (1);
 }
 
-void    ft_a_split(t_stacks *stacks, int a_pivot)
+void	ft_a_split(t_stacks *stacks, int a_pivot)
 {
-	int     i;
+	int		i;
 	int		len;
-	int     pushed;
-	
+	int		pushed;
+
 	len = stacks->a_len;
 	i = 0;
 	pushed = 0;
@@ -46,9 +46,9 @@ void    ft_a_split(t_stacks *stacks, int a_pivot)
 	}
 }
 
-void    ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
+void	ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
 {
-	int     i;
+	int		i;
 	int		len;
 	int		pushed;
 

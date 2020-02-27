@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   animate.c                                          :+:      :+:    :+:   */
+/*   visualize_moves.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:20:24 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 11:05:47 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 17:26:39 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int			ft_fill_image(t_mlx *mlx)
+static int	ft_fill_image(t_mlx *mlx)
 {
 	int		i;
 
@@ -31,7 +31,7 @@ int			ft_fill_image(t_mlx *mlx)
 	return (1);
 }
 
-int			ft_move(t_mlx *mlx, int i)
+static int	ft_move(t_mlx *mlx, int i)
 {
 	if (ft_strequ(mlx->instructions[i], mlx->moves[mlx->i]))
 	{
@@ -48,7 +48,7 @@ int			ft_move(t_mlx *mlx, int i)
 	return (0);
 }
 
-int			ft_draw(t_mlx *mlx)
+static int	ft_draw(t_mlx *mlx)
 {
 	int		i;
 
@@ -67,20 +67,16 @@ int			ft_draw(t_mlx *mlx)
 	}
 	else
 		mlx->drawn = 1;
-	//ft_free_instructions(mlx->instructions);
-	//free(mlx->operations);
 	return (1);
 }
 
-void			ft_show_moves(t_mlx *mlx, int moves_amount)
+void		ft_visualize_moves(t_mlx *mlx, int moves_amount)
 {
 	mlx->drawn = 0;
 	mlx->i = 0;
-	mlx->operations = ft_operations();
-	mlx->instructions = ft_instructions();
-	if (moves_amount > 100)
+	if (moves_amount > 300)
 		mlx->speed = 0;
 	else
-		mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / MAX_MOVES;
+		mlx->speed = MIN_SPEED - MIN_SPEED * moves_amount / 300;
 	mlx_loop_hook(mlx->mlx_ptr, ft_draw, mlx);
 }

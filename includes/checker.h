@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 11:01:08 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 17:28:52 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 
 # define WIN_WIDTH 2000
 # define WIN_HEIGHT 1000
-# define MAX_MOVES 10000
-# define MAX_PRINT 500
-# define MIN_SPEED 50000
+# define MAX_MOVES 1000
+# define MIN_SPEED 100000
 
 typedef struct 		s_mlx
 {
@@ -34,11 +33,12 @@ typedef struct 		s_mlx
 	int				min;
 	int				max;
 	char			**moves;
+	int				moves_amount;
 	int				i;
 	int				drawn;
+	int				speed;
 	int				column_width;
 	int				multiply;
-	int				speed;
 	int				y_zero;
 	void			(**operations)(t_stacks*, char);
 	char			**instructions;
@@ -51,22 +51,22 @@ typedef struct 		s_color
 	int				b;
 }					t_color;
 
-//do_operations:
-void				ft_deal_instructions(t_stacks *stacks);
+int					ft_deal_instructions(t_stacks *stacks, int visualize,
+					t_mlx *mlx);
 char				**ft_instructions(void);
 void				ft_free_instructions(char **instructions);
+int					ft_instruction_nb(char *input, char **instructions);
 
-//visualize:
-void				ft_visualize(t_stacks *stacks);
-void				ft_close(t_mlx *ptrs);
+void				ft_read_and_do(int fd, t_stacks *stacks);
+int					ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks);
 
-//draw_stack:
+void				ft_visualize(t_mlx *mlx);
+
 void				ft_draw_stack(t_mlx *ptrs, t_lst *stack, int x, char *color);
 
-//animate:
-void				ft_show_moves(t_mlx *mlx, int moves_amount);
+void				ft_visualize_moves(t_mlx *mlx, int moves_amount);
 
-//key_events:
 int					ft_deal_key(int key, t_mlx *mlx);
+void				ft_close(t_mlx *ptrs);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 13:01:25 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:10:03 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	ft_print_lst(t_lst *lst)
+void		ft_print_lst(t_lst *lst)
 {
 	while (lst)
 	{
@@ -39,7 +39,7 @@ int		ft_list_is_sorted(t_lst *stack)
 	return (1);
 }
 
-void	ft_print_result(t_stacks *stacks)
+void		ft_print_result(t_stacks *stacks)
 {
 	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)
 		ft_putendl("OK");
@@ -47,7 +47,7 @@ void	ft_print_result(t_stacks *stacks)
 		ft_putendl("KO");
 }
 
-void	ft_error(void)
+void		ft_error(void)
 {
 	ft_putendl_fd("Error", 2);
 	exit(1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cs_sort_a.c                                        :+:      :+:    :+:   */
+/*   sort_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:55:54 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/26 17:38:46 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 17:49:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ft_sort_a(t_stacks *stacks)
 	int		biggest;
 	int		smallest_since;
 	int		pushed;
-	
+
 	pushed = 0;
 	smallest = ft_find_the_smallest(stacks->a);
 	biggest = ft_find_the_biggest(stacks->a);

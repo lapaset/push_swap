@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   make_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:14:40 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/20 12:06:03 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 12:26:48 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static t_lst	*ft_new_elem(int nb)
+t_lst			*ft_new_elem(int nb)
 {
 	t_lst 	*elem;
 

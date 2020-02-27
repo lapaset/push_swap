@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   deal_instructions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:49:31 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/11 11:26:21 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/27 15:49:43 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char		**ft_instructions(void)
 	return (instructions);
 }
 
-void			ft_free_instructions(char **instructions)
+void		ft_free_instructions(char **instructions)
 {
 	int		i;
 
@@ -44,12 +44,11 @@ void			ft_free_instructions(char **instructions)
 	free(instructions);
 }
 
-int				ft_instruction_nb(char *input, char **instructions)
+int			ft_instruction_nb(char *input, char **instructions)
 {
 	int		i;
 
 	i = 0;
-	//ft_printf("input: %s\n", input);
 	while (i < 11)
 	{
 		if (ft_strequ(instructions[i], input))
@@ -61,25 +60,13 @@ int				ft_instruction_nb(char *input, char **instructions)
 	return (i);
 }
 
-void			ft_read_and_do(int fd, t_stacks *stacks)
+int			ft_deal_instructions(t_stacks *stacks, int visualize, t_mlx *mlx)
 {
-	void	(**operations)(t_stacks*, char);
-	char	*input;
-	char	**instructions;
-
-	operations = ft_operations();
-	instructions = ft_instructions();
-	while (get_next_line(fd, &input) != 0)
+	if (!visualize)
 	{
-		operations[ft_instruction_nb(input, instructions)]
-					(stacks, input[ft_strlen(input) - 1]);
+		ft_read_and_do(0, stacks);
+		ft_read_and_do(1, stacks);
+		return (1);
 	}
-	ft_free_instructions(instructions);
-	free(operations);
-}
-
-void			ft_deal_instructions(t_stacks *stacks)
-{
-	ft_read_and_do(0, stacks);
-	ft_read_and_do(1, stacks);
+	return (ft_read_to_mlx(mlx, stacks));
 }
