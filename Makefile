@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
+#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/27 18:00:32 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/28 11:09:18 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ _OBJS_CHECKER = checker.o make_list.o utilities.o operations.o\
 	visualize.o draw_stack.o visualize_moves.o key_events.o
 _OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o operations.o\
 	ps_operations.o combine_sort.o sort_utilities.o rotate_to.o\
-	sort_a.o cs_utilities.o split.o pivot.o sort.o part_to_a.o\
+	sort_a.o split.o pivot.o sort.o part_to_a.o\
 	find_smallest_biggest.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 OBJS_PUSH_SWAP = $(patsubst %, $(ODIR)/%, $(_OBJS_PUSH_SWAP))
