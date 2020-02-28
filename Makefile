@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
+#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/28 11:09:18 by llahti           ###   ########.fr        #
+#    Updated: 2020/02/28 12:54:56 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ _OBJS_CHECKER = checker.o make_list.o utilities.o operations.o\
 _OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o operations.o\
 	ps_operations.o combine_sort.o sort_utilities.o rotate_to.o\
 	sort_a.o split.o pivot.o sort.o part_to_a.o\
-	find_smallest_biggest.o
+	find_smallest_biggest.o quicksort.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 OBJS_PUSH_SWAP = $(patsubst %, $(ODIR)/%, $(_OBJS_PUSH_SWAP))
 GREEN = \033[1;32m

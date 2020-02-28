@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 18:10:03 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/28 13:09:24 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,21 @@ void		ft_print_result(t_stacks *stacks)
 	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)
 		ft_putendl("OK");
 	else
+	{
+		t_lst *temp = stacks->a;
+		while (temp->next)
+		{
+			if (temp->nb > temp->next->nb)
+				ft_printf("Nb at wrong place: %d\n", temp->nb);
+			temp = temp->next;
+		}
+		//this must come off
+		ft_printf("Stack a: ");
+		ft_print_lst(stacks->a);
+		ft_printf("Stack b: ");
+		ft_print_lst(stacks->b);
 		ft_putendl("KO");
+	}
 }
 
 void		ft_error(void)

@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 18:00:18 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/28 17:08:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,6 @@ int		    ft_find_next_smallest(t_lst *stack, int nb);
 int		    ft_find_next_biggest(t_lst *stack, int nb);
 int		    ft_find_the_smallest(t_lst *stack);
 int		    ft_find_the_biggest(t_lst *stack);
+
+//quicksort:
+void	    ft_quicksort(t_stacks *stacks, int amount, int first);
