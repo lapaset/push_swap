@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilities.c                                        :+:      :+:    :+:   */
+/*   stacks_utilities.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/28 13:09:24 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 12:52:37 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
+void		ft_print_lst_with_pivots(t_lst *lst, int a_pivot, int pivot, int b_pivot)
+{
+	while (lst)
+	{
+		if (lst->nb >= a_pivot)
+			ft_printf("{blue}");
+		else if (lst->nb >= pivot)
+			ft_printf("{red}");
+		else if (lst->nb >= b_pivot)
+			ft_printf("{yellow}");
+		else
+			ft_printf("{green}");
+		ft_printf("%d{eoc} ", lst->nb);
+		lst = lst->next;
+	}
+	ft_printf("\n");
+}
+
 void		ft_print_lst(t_lst *lst)
 {
 	while (lst)
 	{
-		if (lst->nb < 1 && lst->nb > -52)
+		if (lst->nb >= 50)
 			ft_printf("{blue}");
-		if (lst->nb < 48 && lst->nb > 0)
+		else if (lst->nb >= 0)
 			ft_printf("{red}");
-		else if (lst->nb > 24)
+		else if (lst->nb >= -50)
 			ft_printf("{yellow}");
+		else
+			ft_printf("{green}");
 		ft_printf("%d{eoc} ", lst->nb);
 		lst = lst->next;
 	}
@@ -37,28 +57,6 @@ int		ft_list_is_sorted(t_lst *stack)
 		stack = stack->next;
 	}
 	return (1);
-}
-
-void		ft_print_result(t_stacks *stacks)
-{
-	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)
-		ft_putendl("OK");
-	else
-	{
-		t_lst *temp = stacks->a;
-		while (temp->next)
-		{
-			if (temp->nb > temp->next->nb)
-				ft_printf("Nb at wrong place: %d\n", temp->nb);
-			temp = temp->next;
-		}
-		//this must come off
-		ft_printf("Stack a: ");
-		ft_print_lst(stacks->a);
-		ft_printf("Stack b: ");
-		ft_print_lst(stacks->b);
-		ft_putendl("KO");
-	}
 }
 
 void		ft_error(void)

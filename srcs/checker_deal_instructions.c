@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deal_instructions.c                                :+:      :+:    :+:   */
+/*   checker_deal_instructions.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:49:31 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 15:49:43 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:30:12 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,10 @@ int			ft_instruction_nb(char *input, char **instructions)
 	return (i);
 }
 
-int			ft_deal_instructions(t_stacks *stacks, int visualize, t_mlx *mlx)
+int			ft_deal_instructions(t_stacks *stacks, t_flags *flags, t_mlx *mlx)
 {
-	if (!visualize)
-	{
-		ft_read_and_do(0, stacks);
-		ft_read_and_do(1, stacks);
-		return (1);
-	}
-	return (ft_read_to_mlx(mlx, stacks));
+	if (flags->v)
+		return (ft_read_to_mlx(mlx, stacks));
+	ft_read_and_do(0, stacks, flags);
+	return (1);
 }

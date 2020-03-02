@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:52:52 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/28 17:31:34 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 08:41:40 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,6 @@ int		main(int arg, char **argv)
 	//ft_print_lst(stacks->b);
 	return (0);
 }
+
+
+//make the push_swap take strings as well

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_instructions.c                                :+:      :+:    :+:   */
+/*   checker_read_instructions.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 15:36:35 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 15:43:41 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:40:04 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	ft_read_and_do(int fd, t_stacks *stacks)
+void	ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags)
 {
 	void	(**operations)(t_stacks*, char);
 	char	*input;
@@ -22,7 +22,8 @@ void	ft_read_and_do(int fd, t_stacks *stacks)
 	instructions = ft_instructions();
 	while (get_next_line(fd, &input) != 0)
 	{
-		if (fd == 1 && input[0] == 0)
+		//ft_printf("flags->e: %d input[0]: %s$", flags->e, input[0]);
+		if (flags->e && !input[0])
 			break ;
 		operations[ft_instruction_nb(input, instructions)](stacks,
 		input[ft_strlen(input) - 1]);
@@ -46,6 +47,8 @@ int		ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks)
 	i = 0;
 	while (get_next_line(0, &input) != 0)
 	{
+		if (!input[0])
+			break ;
 		mlx->operations[ft_instruction_nb(input, mlx->instructions)](stacks,
 		input[ft_strlen(input) - 1]);
 		if (i < MAX_MOVES)

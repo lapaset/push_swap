@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 17:28:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 13:37:56 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include "stacks.h"
 # include <fcntl.h>
 
-# define WIN_WIDTH 2000
-# define WIN_HEIGHT 1000
-# define MAX_MOVES 1000
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT 800
+# define MAX_MOVES 6000
 # define MIN_SPEED 100000
 
 typedef struct 		s_mlx
@@ -51,13 +51,20 @@ typedef struct 		s_color
 	int				b;
 }					t_color;
 
-int					ft_deal_instructions(t_stacks *stacks, int visualize,
+typedef struct		s_flags
+{
+	int				v;
+	int				e;
+	int				d;
+}					t_flags;
+
+int					ft_deal_instructions(t_stacks *stacks, t_flags *flags,
 					t_mlx *mlx);
 char				**ft_instructions(void);
 void				ft_free_instructions(char **instructions);
 int					ft_instruction_nb(char *input, char **instructions);
 
-void				ft_read_and_do(int fd, t_stacks *stacks);
+void				ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags);
 int					ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks);
 
 void				ft_visualize(t_mlx *mlx);

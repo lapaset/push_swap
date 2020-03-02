@@ -10,6 +10,6 @@ if [ $# -ne 3 ] ; then
         exit 1
 fi
 NUMBERS=$( seq $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
-./push_swap $NUMBERS | ./checker $NUMBERS
+./push_swap $NUMBERS | ./checker -v -d $NUMBERS
 #./push_swap $NUMBERS
-echo $NUMBERS
+#echo $NUMBERS

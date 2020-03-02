@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:53:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/28 17:08:35 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/01 10:45:03 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	    ft_sort(t_stacks *stacks, int amount);
 void	    ft_sort_a_of_three(t_stacks *stacks);
 
 //tsek part_to_a:
-void	    ft_part_to_a(t_stacks *stacks, int pivot, int biggest);
-void	    ft_rest_to_a(t_stacks *stacks, int biggest);
+void	    ft_part_to_a(t_stacks *stacks, int pivot);
+void	    ft_rest_to_a(t_stacks *stacks);
 
 //find_smallest_biggest:
 int		    ft_find_next_smallest(t_lst *stack, int nb);
@@ -62,3 +62,7 @@ int		    ft_find_the_biggest(t_lst *stack);
 
 //quicksort:
 void	    ft_quicksort(t_stacks *stacks, int amount, int first);
+void	    ft_push_three_or_less_to_a(t_stacks *stacks, int amount);
+
+//small_sort:
+void	    ft_small_sort(t_stacks *stacks);

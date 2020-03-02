@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:12:08 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 18:12:47 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 12:53:29 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void				ft_reverse_rotate(t_stacks *stacks, char c);
 void				(**ft_operations(void))(t_stacks*, char);
 
 //utilities:
+void				ft_print_lst_with_pivots(t_lst *lst, int a_pivot, int pivot, int b_pivot);
 void				ft_print_lst(t_lst *lst);
 int					ft_list_is_sorted(t_lst *stack);
-void				ft_print_result(t_stacks *stacks);
 void				ft_error(void);
 int					ft_atoi_push_swap(const char *str);

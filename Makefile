@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
+#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/02/28 12:54:56 by llahti           ###   ########.fr        #
+#    Updated: 2020/03/02 14:53:41 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@ SDIR = srcs
 INC = includes/
 LIB = libft/libft.a
 LIBDIR = libft
-_OBJS_CHECKER = checker.o make_list.o utilities.o operations.o\
-	deal_instructions.o read_instructions.o\
-	visualize.o draw_stack.o visualize_moves.o key_events.o
-_OBJS_PUSH_SWAP = push_swap.o make_list.o utilities.o operations.o\
-	ps_operations.o combine_sort.o sort_utilities.o rotate_to.o\
-	sort_a.o split.o pivot.o sort.o part_to_a.o\
-	find_smallest_biggest.o quicksort.o
+_OBJS_STACKS = stacks_make_list.o stacks_utilities.o stacks_operations.o
+_OBJS_CHECKER = $(_OBJS_STACKS) checker.o checker_deal_instructions.o\
+	checker_read_instructions.o checker_visualize.o checker_draw_stack.o\
+	checker_visualize_moves.o checker_key_events.o
+_OBJS_PUSH_SWAP = $(_OBJS_STACKS) push_swap.o small_sort.o\
+	push_swap_operations.o combine_sort.o push_swap_utilities.o\
+	push_swap_rotate_to.o combine_sort_sort_a.o combine_sort_split.o\
+	combine_sort_pivot.o push_swap_sort.o combine_sort_part_to_a.o\
+	push_swap_smallest_biggest.o quicksort.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 OBJS_PUSH_SWAP = $(patsubst %, $(ODIR)/%, $(_OBJS_PUSH_SWAP))
 GREEN = \033[1;32m

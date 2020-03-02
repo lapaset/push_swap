@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 17:25:37 by llahti           ###   ########.fr       */
+/*   Updated: 2020/02/28 20:41:10 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_scale(t_mlx *mlx)
 
 static int	ft_is_visualisable(t_mlx *mlx)
 {
-	if (WIN_WIDTH / 2 / mlx->stacks->a_len - 1 < 2)
+	if (WIN_WIDTH / 2 / mlx->stacks->a_len - 1 < 1)
 		ft_printf("Too many values for this window width.\n");
 	else if (ft_scale(mlx) > WIN_HEIGHT - 1)
 		ft_printf("Scale %d is too big to be visualized. Maximum is %d\n",
