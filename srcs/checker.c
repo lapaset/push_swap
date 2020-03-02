@@ -6,22 +6,11 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 13:35:03 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:29:35 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-// todo as a bonus: -e flag enter ends giving instructions
-// 					-d flag to print stacks when KO
-//					-add flags to usage
-
-int		ft_to_visualize(char **argv)
-{
-	if (ft_strequ(argv[1], "-v"))
-		return (1);
-	return (0);
-}
 
 int		ft_is_checker_flag(char *argv)
 {
@@ -129,46 +118,3 @@ int 	main(int arg, char **argv)
 		ft_visualize(mlx);
 	return (0);
 }
-
-/*int 	main(int arg, char **argv)
-{	
-	t_stacks	*stacks;
-	t_mlx		*mlx = NULL;
-	char		*flags = NULL;
-	int			visualize;
-
-	if (arg == 1)
-		return (1);
-	ft_add_checker_flags(arg, argv, &flags);
-	ft_printf("flags: %s\n", flags);
-	visualize = ft_to_visualize(argv);
-	stacks = (t_stacks*)malloc(sizeof(t_stacks));
-	if (!visualize)
-		ft_params_to_list(arg, argv, stacks);
-	else
-	{
-		ft_params_to_list(arg - 1, &argv[1], stacks);
-		mlx = (t_mlx*)malloc(sizeof(t_mlx));
-		ft_copy_stacks_to_mlx(mlx, stacks);
-	}
-	if (!ft_deal_instructions(stacks, visualize, mlx))
-	{
-		ft_printf("Too many moves for visualization. Max is %d\n", MAX_MOVES);
-		visualize = 0;
-	}
-	if (visualize)
-	{
-		ft_print_result(stacks);
-		ft_visualize(mlx);
-	}
-	else
-		ft_print_result(stacks);
-	return (0);
-}*/
-
-//TODAY:
-//flags in order
-//string parameters in order
-//go to school
-//make ready for returning
-//evaluations
