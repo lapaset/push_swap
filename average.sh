@@ -15,6 +15,8 @@ SUM=0
 for (( I=0; I<$4; I++ )) ; do
         NUMBERS=$( seq $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
         SUM=$(( $SUM + $( ./push_swap $NUMBERS | wc -l ) ))
+        echo $NUMBERS >> results
+        ./push_swap $NUMBERS | ./checker $NUMBERS >> results
         if [ $(($I % 30)) -eq 0 ] ; then
             echo -ne .
         fi
