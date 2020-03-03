@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 13:37:56 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:25:38 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define WIN_HEIGHT 800
 # define MAX_MOVES 6000
 # define MIN_SPEED 100000
+# define STACK_A_COLOR "5500FF"
+# define STACK_B_COLOR "00FFFF"
 
 typedef struct 		s_mlx
 {
@@ -58,14 +60,13 @@ typedef struct		s_flags
 	int				d;
 }					t_flags;
 
-int					ft_deal_instructions(t_stacks *stacks, t_flags *flags,
-					t_mlx *mlx);
+void				ft_deal_instructions(t_stacks *stacks, t_flags *flags, t_mlx *mlx);
 char				**ft_instructions(void);
 void				ft_free_instructions(char **instructions);
 int					ft_instruction_nb(char *input, char **instructions);
 
 void				ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags);
-int					ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks);
+void				ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks, t_flags *flags);
 
 void				ft_visualize(t_mlx *mlx);
 
@@ -75,5 +76,10 @@ void				ft_visualize_moves(t_mlx *mlx, int moves_amount);
 
 int					ft_deal_key(int key, t_mlx *mlx);
 void				ft_close(t_mlx *ptrs);
+
+int					ft_is_checker_flag(char *argv);
+int 				ft_add_checker_flags(int arg, char **argv, t_flags *flags);
+void				ft_print_result(t_stacks *stacks, int d);
+void				ft_copy_stacks_to_mlx(t_mlx *mlx, t_stacks *stacks);
 
 #endif

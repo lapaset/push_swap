@@ -6,13 +6,13 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 15:49:31 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 14:30:12 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:16:13 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-char		**ft_instructions(void)
+char	**ft_instructions(void)
 {
 	char	**instructions;
 
@@ -31,7 +31,7 @@ char		**ft_instructions(void)
 	return (instructions);
 }
 
-void		ft_free_instructions(char **instructions)
+void	ft_free_instructions(char **instructions)
 {
 	int		i;
 
@@ -44,7 +44,7 @@ void		ft_free_instructions(char **instructions)
 	free(instructions);
 }
 
-int			ft_instruction_nb(char *input, char **instructions)
+int		ft_instruction_nb(char *input, char **instructions)
 {
 	int		i;
 
@@ -60,10 +60,10 @@ int			ft_instruction_nb(char *input, char **instructions)
 	return (i);
 }
 
-int			ft_deal_instructions(t_stacks *stacks, t_flags *flags, t_mlx *mlx)
+void	ft_deal_instructions(t_stacks *stacks, t_flags *flags, t_mlx *mlx)
 {
 	if (flags->v)
-		return (ft_read_to_mlx(mlx, stacks));
-	ft_read_and_do(0, stacks, flags);
-	return (1);
+		ft_read_to_mlx(mlx, stacks, flags);
+	else
+		ft_read_and_do(0, stacks, flags);
 }

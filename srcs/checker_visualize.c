@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualize.c                                        :+:      :+:    :+:   */
+/*   checker_visualize.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 17:03:53 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/28 20:41:10 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:22:54 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		ft_visualize(t_mlx *mlx)
 		return ;
 	ft_init_mlx(mlx);
 	mlx_key_hook(mlx->win_ptr, ft_deal_key, mlx);
-	ft_draw_stack(mlx, mlx->stacks->a, 0, "5500FF");
+	ft_draw_stack(mlx, mlx->stacks->a, 0, STACK_A_COLOR);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 	if (mlx->moves_amount > 0)
 		ft_visualize_moves(mlx, mlx->moves_amount);

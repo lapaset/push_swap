@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 15:36:35 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 14:40:04 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:03:00 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags)
 	instructions = ft_instructions();
 	while (get_next_line(fd, &input) != 0)
 	{
-		//ft_printf("flags->e: %d input[0]: %s$", flags->e, input[0]);
 		if (flags->e && !input[0])
 			break ;
 		operations[ft_instruction_nb(input, instructions)](stacks,
@@ -34,16 +33,11 @@ void	ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags)
 	free(input);
 }
 
-int		ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks)
-{
+int		ft_get_mlx_moves(t_mlx *mlx, t_stacks *stacks)
+{	
 	int		i;
 	char	*input;
-	int		to_return;
 
-	to_return = 1;
-	mlx->operations = ft_operations();
-	mlx->instructions = ft_instructions();
-	mlx->moves = (char**)malloc(sizeof(char*) * MAX_MOVES + 1);
 	i = 0;
 	while (get_next_line(0, &input) != 0)
 	{
@@ -53,13 +47,25 @@ int		ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks)
 		input[ft_strlen(input) - 1]);
 		if (i < MAX_MOVES)
 			mlx->moves[i] = ft_stralloc(input);
-		else if (i == MAX_MOVES)
-			to_return = 0;
 		free(input);
 		i++;
 	}
 	mlx->moves[i] = NULL;
-	mlx->moves_amount = i;
 	free(input);
-	return (to_return);
+	return (i);
+}
+
+void	ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks, t_flags *flags)
+{
+	int		moves_amount;
+
+	mlx->operations = ft_operations();
+	mlx->instructions = ft_instructions();
+	mlx->moves = (char**)malloc(sizeof(char*) * MAX_MOVES + 1);
+	moves_amount = ft_get_mlx_moves(mlx, stacks);	
+	if ((mlx->moves_amount = moves_amount) > MAX_MOVES)
+	{
+		ft_printf("Too many moves for visualization. Max is %d\n", MAX_MOVES);
+		flags->v = 0;
+	}
 }

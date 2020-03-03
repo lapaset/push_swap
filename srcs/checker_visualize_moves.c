@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   visualize_moves.c                                  :+:      :+:    :+:   */
+/*   checker_visualize_moves.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 12:20:24 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 17:26:39 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:23:05 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int	ft_move(t_mlx *mlx, int i)
 		if (mlx->speed)
 			usleep(mlx->speed);
 		ft_fill_image(mlx);
-		ft_draw_stack(mlx, mlx->stacks->a, 0, "5500FF");
-		ft_draw_stack(mlx, mlx->stacks->b, WIN_WIDTH / 2, "00FFFF");
+		ft_draw_stack(mlx, mlx->stacks->a, 0, STACK_A_COLOR);
+		ft_draw_stack(mlx, mlx->stacks->b, WIN_WIDTH / 2, STACK_B_COLOR);
 		mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr, 0, 0);
 		return (1);
 	}
