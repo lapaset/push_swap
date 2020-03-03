@@ -18,7 +18,7 @@ for (( I=0; I<$4; I++ )) ; do
         echo $NUMBERS >> results
         ./push_swap $NUMBERS | ./checker $NUMBERS >> results
         if [ $(($I % 30)) -eq 0 ] ; then
-            echo -ne .
+            echo -ne . $(( $SUM / ((I+1)) ))
         fi
 done
 AVERAGE=$(( $SUM / $4 ))

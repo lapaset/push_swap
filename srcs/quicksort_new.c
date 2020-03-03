@@ -6,13 +6,80 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:27:23 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 14:50:18 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 12:00:59 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int 	ft_qs_pivot(t_lst *stack, int average, int amount)
+int		ft_find_the_smallest_in(t_lst *stack, int amount)
+{
+	int		smallest;
+	int		i;
+
+	smallest = stack->nb;
+	i = 0;
+	while (stack->next && i < amount)
+	{
+		stack = stack->next;
+		if (stack->nb < smallest)
+			smallest = stack->nb;
+		i++;
+	}
+	return (smallest);
+}
+
+int		ft_find_next_smallest_in(t_lst *stack, int nb, int amount)
+{
+	int		next_smallest;
+	int		i;
+
+	i = 0;
+	while (stack && stack->nb <= nb && i < amount)
+	{
+		stack = stack->next;
+		i++;
+	}
+	if (!stack || i == amount)
+		ft_error();
+	if (stack->nb == nb + 1)
+		return (stack->nb);
+	next_smallest = stack->nb;
+	while (stack->next && i < amount)
+	{
+		stack = stack->next;
+		if (stack->nb == nb + 1)
+			return (stack->nb);
+		if (stack->nb > nb && stack->nb < next_smallest)
+			next_smallest = stack->nb;
+		i++;
+	}
+	return (next_smallest);
+}
+
+static int	ft_find_ordernb(int ordernb, t_lst *stack, int amount)
+{
+	int		smallest;
+	int		i;
+
+	i = 1;
+	smallest = ft_find_the_smallest_in(stack, amount);
+	while (i < ordernb)
+	{
+		smallest = ft_find_next_smallest_in(stack, smallest, amount);
+		i++;
+	}
+	return (smallest);
+}
+
+int			ft_qs_pivot(t_lst *stack, int amount)
+{
+	//if (amount > 4 && amount % 2 == 0)
+	//	return (ft_find_ordernb(amount / 2, stack, amount));
+	return (ft_find_ordernb(amount / 2 + 1, stack, amount));
+}
+
+/*int 	ft_qs_pivot(t_lst *stack, int average, int amount)
 {
 	int		pivot;
 	int		i;
@@ -29,7 +96,7 @@ int 	ft_qs_pivot(t_lst *stack, int average, int amount)
 		i++;
 	}
 	return (pivot);
-}
+}*/
 
 void	ft_swap_if_first_is_bigger(t_stacks *stacks, char c)
 {
@@ -256,7 +323,7 @@ void	ft_push_three_or_less_to_a(t_stacks *stacks, int amount)
 				ft_psrotate(stacks, 'b');
 				ft_psswap(stacks, 'b');
 				ft_pspush(stacks, 'a');
-				//here you can optimize one swap
+				//here you can optimize one swap?
 				ft_psreverse_rotate(stacks, 'b');
 			}
 		}
@@ -268,7 +335,7 @@ void	ft_push_three_or_less_to_a(t_stacks *stacks, int amount)
 void	ft_quicksort_b(t_stacks *stacks, int amount, int first)
 {
 	int		pivot;
-	int		average;
+	//int		average;
 	//int		amount_next;
 	//int 	i;
 	int		rotated;
@@ -283,8 +350,8 @@ void	ft_quicksort_b(t_stacks *stacks, int amount, int first)
 		ft_print_lst(stacks->b);*/
 		return ;
 	}
-	average = ft_average(stacks->b, amount);
-	pivot = ft_qs_pivot(stacks->b, average, amount);
+	//average = ft_average(stacks->b, amount);
+	pivot = ft_qs_pivot(stacks->b, amount);
 	//ft_printf("pivot at b: %d\n", pivot);
 	//ft_printf("amount: %d average: %d pivot: %d\n", amount, average, pivot);
 	/*ft_printf("amount: %d at b before move stack a: ", amount);
@@ -303,7 +370,7 @@ void	ft_quicksort_b(t_stacks *stacks, int amount, int first)
 void	ft_quicksort(t_stacks *stacks, int amount, int first)
 {
 	int		pivot;
-	int		average;
+	//int		average;
 	int		amount_next;
 	int		rest;
 
@@ -311,8 +378,8 @@ void	ft_quicksort(t_stacks *stacks, int amount, int first)
 		return ;
 	if (amount > 3)
 	{
-		average = ft_average(stacks->a, amount);
-		pivot = ft_qs_pivot(stacks->a, average, amount);
+		//average = ft_average(stacks->a, amount);
+		pivot = ft_qs_pivot(stacks->a, amount);
 		//ft_printf("pivot at a: %d\n", pivot);
 		/*ft_printf("amount: %d at a before move stack a: ", amount);
 		ft_print_lst(stacks->a);
@@ -336,6 +403,3 @@ void	ft_quicksort(t_stacks *stacks, int amount, int first)
 	else if (amount == 2)
 		ft_swap_if_first_is_bigger(stacks, 'a');
 }
-
-
-//todo: count real pivot
