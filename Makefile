@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+         #
+#    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/03/03 20:12:33 by llahti           ###   ########.fr        #
+#    Updated: 2020/03/04 14:48:50 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,9 @@ _OBJS_CHECKER = $(_OBJS_STACKS) checker.o checker_deal_instructions.o\
 _OBJS_PUSH_SWAP = $(_OBJS_STACKS) push_swap.o small_sort.o\
 	push_swap_operations.o combine_sort.o push_swap_utilities.o\
 	push_swap_rotate_to.o combine_sort_sort_a.o combine_sort_split.o\
-	combine_sort_pivot.o push_swap_sort_utilities.o combine_sort_part_to_a.o\
-	push_swap_smallest_biggest.o quicksort.o push_swap_sort_three.o
+	push_swap_sort_utilities.o combine_sort_part_to_a.o\
+	push_swap_smallest_biggest.o quicksort.o push_swap_sort_three.o\
+	push_swap_pivot.o quicksort_move_from.o
 OBJS_CHECKER = $(patsubst %, $(ODIR)/%, $(_OBJS_CHECKER))
 OBJS_PUSH_SWAP = $(patsubst %, $(ODIR)/%, $(_OBJS_PUSH_SWAP))
 GREEN = \033[1;32m
@@ -52,12 +53,12 @@ $(NAME_PUSH_SWAP): $(OBJS_PUSH_SWAP)
 
 clean:
 	@rm -Rf -r $(ODIR)
-	@echo "Checker objects removed"
+	@echo "Checker and push_swap objects removed"
 	@make -C $(LIBDIR) clean
 
 fclean: clean
 	@rm -Rf -r $(NAME_CHECKER) $(NAME_PUSH_SWAP)
-	@echo "Checker removed"
+	@echo "Checker and push_swap removed"
 	@make -C $(LIBDIR) libclean
 
 re: fclean all
