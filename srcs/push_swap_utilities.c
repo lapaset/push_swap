@@ -3,34 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utilities.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:05:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 17:22:34 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:33:48 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_average(t_lst *stack, int amount)
-{
-	int		sum;
-	int		i;
-
-	sum = 0;
-	i = 0;
-	while (i < amount && stack)
-	{
-		sum += stack->nb;
-		stack = stack->next;
-		i++;
-	}
-	return (sum / amount);
-}
-
 int		ft_is_rotated(t_stacks *stacks, char stack, int nb)
 {
-	int 	distance;
+	int		distance;
 	t_lst	*temp;
 
 	distance = 0;

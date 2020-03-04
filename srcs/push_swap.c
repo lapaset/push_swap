@@ -3,44 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 10:52:52 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 20:47:11 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 16:25:10 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_sort(t_stacks *stacks, int amount)
+static void	ft_sort(t_stacks *stacks)
 {
-	int		*arr;
+	int			*arr;
+	int			i;
 
-	arr = (int*)malloc(sizeof(int) * amount);
+	arr = (int*)malloc(sizeof(int) * stacks->a_len);
 	arr[0] = ft_find_the_smallest(stacks->a);
-	int i = 1;
-	while (i < amount)
+	i = 1;
+	while (i < stacks->a_len)
 	{
 		arr[i] = ft_find_next_smallest(stacks->a, arr[i - 1]);
 		i++;
 	}
-	i = 0;
-	while (i < amount)
-	{
-		//ft_printf("{yellow}%d {eoc}", arr[i]);
-		i++;
-	}
-	if (amount == 3)
+	if (stacks->a_len == 3)
 		ft_sort_a_of_three(stacks);
-	else if (amount < 20)
-		ft_small_sort(stacks);
-	else if (amount < 200)
-		ft_combine_sort(stacks);
+	else if (stacks->a_len < 20)
+		ft_small_sort(stacks, arr);
+	else if (stacks->a_len < 200)
+		ft_combine_sort(stacks, arr);
 	else
-		ft_quicksort(stacks, amount, 1);
+		ft_quicksort(stacks, stacks->a_len, 1, arr);
+	free(arr);
 }
 
-int		main(int arg, char **argv)
+int			main(int arg, char **argv)
 {
 	t_stacks	*stacks;
 
@@ -50,6 +46,6 @@ int		main(int arg, char **argv)
 	ft_params_to_list(arg, argv, stacks);
 	if (!ft_is_basically_sorted(stacks, ft_find_the_smallest(stacks->a),
 		ft_find_the_biggest(stacks->a)))
-		ft_sort(stacks, arg - 1);
+		ft_sort(stacks);
 	return (0);
 }

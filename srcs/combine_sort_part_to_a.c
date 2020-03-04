@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   combine_sort_part_to_a.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:34:22 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 17:25:25 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 14:41:02 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void			ft_rest_to_a(t_stacks *stacks)
 	int		second_biggest;
 	int		is_rotated;
 
+	if (stacks->b_len == 0)
+		return ;
 	biggest = ft_find_the_biggest(stacks->b);
 	while (stacks->b_len > 3)
 	{

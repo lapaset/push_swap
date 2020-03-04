@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_smallest_biggest.c                            :+:      :+:    :+:   */
+/*   push_swap_smallest_biggest.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:55:10 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 17:57:07 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:33:06 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		ft_find_next_biggest(t_lst *stack, int nb)
 		if (stack->nb == nb - 1)
 			return (stack->nb);
 		if (stack->nb > next_biggest && stack->nb < nb)
-			next_biggest = stack->nb;		
+			next_biggest = stack->nb;
 	}
 	return (next_biggest);
 }

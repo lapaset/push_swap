@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stacks_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 11:54:18 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/28 20:57:28 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 13:08:16 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void	ft_swap(t_stacks *stacks, char c)
+void		ft_swap(t_stacks *stacks, char c)
 {
 	t_lst	*stack;
 	int		temp;
@@ -34,7 +34,7 @@ void	ft_swap(t_stacks *stacks, char c)
 	stack->next->nb = temp;
 }
 
-void	ft_push(t_stacks *stacks, char c)
+void		ft_push(t_stacks *stacks, char c)
 {
 	t_lst	*temp;
 
@@ -62,7 +62,7 @@ void	ft_push(t_stacks *stacks, char c)
 		return ;
 }
 
-void	ft_rotate(t_stacks *stacks, char c)
+void		ft_rotate(t_stacks *stacks, char c)
 {
 	t_lst	*temp;
 
@@ -89,7 +89,7 @@ void	ft_rotate(t_stacks *stacks, char c)
 		return ;
 }
 
-void	ft_move_from_end_to_start(t_stacks *stacks, char stack)
+static void	ft_move_from_end_to_start(t_stacks *stacks, char stack)
 {
 	t_lst	*temp;
 
@@ -111,9 +111,9 @@ void	ft_move_from_end_to_start(t_stacks *stacks, char stack)
 		temp->next = NULL;
 		stacks->b_end = temp;
 	}
-}	
+}
 
-void	ft_reverse_rotate(t_stacks *stacks, char c)
+void		ft_reverse_rotate(t_stacks *stacks, char c)
 {
 	if (c == 'a' || c == 'b')
 		ft_move_from_end_to_start(stacks, c);
@@ -124,23 +124,4 @@ void	ft_reverse_rotate(t_stacks *stacks, char c)
 	}
 	else
 		return ;
-}
-
-void	(**ft_operations(void))(t_stacks*, char)
-{
-	void	(**operations)(t_stacks*, char);
-
-	operations = malloc(sizeof(void*) * 11);
-	operations[0] = &ft_swap;
-	operations[1] = &ft_swap;
-	operations[2] = &ft_swap;
-	operations[3] = &ft_push;
-	operations[4] = &ft_push;
-	operations[5] = &ft_rotate;
-	operations[6] = &ft_rotate;
-	operations[7] = &ft_rotate;
-	operations[8] = &ft_reverse_rotate;
-	operations[9] = &ft_reverse_rotate;
-	operations[10] = &ft_reverse_rotate;
-	return (operations);
 }

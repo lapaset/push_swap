@@ -6,7 +6,7 @@
 #    By: llahti <llahti@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 13:50:29 by llahti            #+#    #+#              #
-#    Updated: 2020/03/04 14:48:50 by llahti           ###   ########.fr        #
+#    Updated: 2020/03/04 14:51:51 by llahti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,12 @@ $(NAME_PUSH_SWAP): $(OBJS_PUSH_SWAP)
 
 clean:
 	@rm -Rf -r $(ODIR)
-	@echo "Checker and push_swap objects removed"
+	@echo "$(GREEN)Checker and push_swap objects removed$(EOC)"
 	@make -C $(LIBDIR) clean
 
 fclean: clean
 	@rm -Rf -r $(NAME_CHECKER) $(NAME_PUSH_SWAP)
-	@echo "Checker and push_swap removed"
+	@echo "$(GREEN)Checker and push_swap removed$(EOC)"
 	@make -C $(LIBDIR) libclean
 
 re: fclean all

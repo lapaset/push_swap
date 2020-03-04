@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   checker_utilities.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 14:31:03 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 15:25:00 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 11:59:06 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-void		ft_print_result(t_stacks *stacks, int d)
+void	ft_print_result(t_stacks *stacks, int d)
 {
 	if (ft_list_is_sorted(stacks->a) && stacks->b == NULL)
 		ft_putendl("OK");

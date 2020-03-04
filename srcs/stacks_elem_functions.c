@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stacks_elem_functions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 15:43:29 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 15:50:57 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:34:28 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_lst			*ft_new_elem(int nb)
 {
-	t_lst 	*elem;
+	t_lst	*elem;
 
 	if (!(elem = (t_lst*)malloc(sizeof(t_lst))))
 		exit(1);

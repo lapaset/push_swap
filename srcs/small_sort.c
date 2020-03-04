@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 10:16:15 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 17:08:29 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:34:06 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_small_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
+static int	ft_small_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 {
 	while (i < len && lst)
 	{
@@ -24,7 +24,7 @@ int		ft_small_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 	return (1);
 }
 
-void	ft_small_a_split(t_stacks *stacks, int a_pivot)
+static void	ft_small_a_split(t_stacks *stacks, int a_pivot)
 {
 	int		i;
 	int		len;
@@ -46,11 +46,11 @@ void	ft_small_a_split(t_stacks *stacks, int a_pivot)
 	}
 }
 
-void	ft_small_sort(t_stacks *stacks)
+void		ft_small_sort(t_stacks *stacks, int *arr)
 {
 	int		pivot;
 
-	pivot = ft_cs_pivot(stacks);
+	pivot = ft_pivot_from_arr(arr, stacks->a, stacks->a_len);
 	ft_small_a_split(stacks, pivot);
 	ft_sort_a(stacks);
 	ft_rest_to_a(stacks);

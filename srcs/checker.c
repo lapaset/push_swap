@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:47:58 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 15:24:48 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:31:54 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int 	main(int arg, char **argv)
-{	
+int		main(int arg, char **argv)
+{
 	t_stacks	*stacks;
 	t_mlx		*mlx;
 	t_flags		*flags;

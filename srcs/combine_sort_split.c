@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   combine_sort_split.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 11:03:50 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/01 10:42:57 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 11:34:38 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
+static int	ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 {
 	while (i < len && lst->next)
 	{
@@ -24,7 +24,7 @@ int		ft_rest_is_bigger(int pivot, t_lst *lst, int i, int len)
 	return (1);
 }
 
-void	ft_a_split(t_stacks *stacks, int a_pivot)
+void		ft_a_split(t_stacks *stacks, int a_pivot)
 {
 	int		i;
 	int		len;
@@ -46,7 +46,7 @@ void	ft_a_split(t_stacks *stacks, int a_pivot)
 	}
 }
 
-void	ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
+static void	ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
 {
 	int		i;
 	int		len;
@@ -70,12 +70,12 @@ void	ft_initial_split(t_stacks *stacks, int pivot, int b_pivot)
 	}
 }
 
-int		ft_cs_split(int pivot, int b_pivot, t_stacks *stacks)
+int			ft_cs_split(int pivot, int b_pivot, t_stacks *stacks, int *arr)
 {
 	int		a_pivot;
 
 	ft_initial_split(stacks, pivot, b_pivot);
-	a_pivot = ft_cs_pivot(stacks);
+	a_pivot = ft_pivot_from_arr(arr, stacks->a, stacks->a_len);
 	ft_a_split(stacks, a_pivot);
 	return (a_pivot);
 }

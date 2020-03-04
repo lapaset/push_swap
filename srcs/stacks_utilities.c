@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stacks_utilities.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:15:59 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 12:52:37 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:28:34 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-void		ft_print_lst_with_pivots(t_lst *lst, int a_pivot, int pivot, int b_pivot)
-{
-	while (lst)
-	{
-		if (lst->nb >= a_pivot)
-			ft_printf("{blue}");
-		else if (lst->nb >= pivot)
-			ft_printf("{red}");
-		else if (lst->nb >= b_pivot)
-			ft_printf("{yellow}");
-		else
-			ft_printf("{green}");
-		ft_printf("%d{eoc} ", lst->nb);
-		lst = lst->next;
-	}
-	ft_printf("\n");
-}
 
 void		ft_print_lst(t_lst *lst)
 {
@@ -48,7 +30,7 @@ void		ft_print_lst(t_lst *lst)
 	ft_printf("\n");
 }
 
-int		ft_list_is_sorted(t_lst *stack)
+int			ft_list_is_sorted(t_lst *stack)
 {
 	while (stack->next)
 	{
@@ -68,7 +50,7 @@ void		ft_error(void)
 int			ft_atoi_push_swap(const char *str)
 {
 	long	a;
-	int 	sign;
+	int		sign;
 
 	while (ft_isspace(*str))
 		str++;
@@ -90,3 +72,21 @@ int			ft_atoi_push_swap(const char *str)
 	return ((int)a * sign);
 }
 
+void		(**g_ft_operations(void))(t_stacks*, char)
+{
+	void	(**operations)(t_stacks*, char);
+
+	operations = malloc(sizeof(void*) * 11);
+	operations[0] = &ft_swap;
+	operations[1] = &ft_swap;
+	operations[2] = &ft_swap;
+	operations[3] = &ft_push;
+	operations[4] = &ft_push;
+	operations[5] = &ft_rotate;
+	operations[6] = &ft_rotate;
+	operations[7] = &ft_rotate;
+	operations[8] = &ft_reverse_rotate;
+	operations[9] = &ft_reverse_rotate;
+	operations[10] = &ft_reverse_rotate;
+	return (operations);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 15:51:01 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/04 12:24:22 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define STACK_A_COLOR "5500FF"
 # define STACK_B_COLOR "00FFFF"
 
-typedef struct 		s_mlx
+typedef struct		s_mlx
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -45,7 +45,7 @@ typedef struct 		s_mlx
 	char			**instructions;
 }					t_mlx;
 
-typedef struct 		s_color
+typedef struct		s_color
 {
 	int				r;
 	int				g;
@@ -59,17 +59,20 @@ typedef struct		s_flags
 	int				d;
 }					t_flags;
 
-void				ft_deal_instructions(t_stacks *stacks, t_flags *flags, t_mlx *mlx);
+void				ft_deal_instructions(t_stacks *stacks, t_flags *flags,
+					t_mlx *mlx);
 char				**ft_instructions(void);
 void				ft_free_instructions(char **instructions);
 int					ft_instruction_nb(char *input, char **instructions);
 
 void				ft_read_and_do(int fd, t_stacks *stacks, t_flags *flags);
-void				ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks, t_flags *flags);
+void				ft_read_to_mlx(t_mlx *mlx, t_stacks *stacks, t_flags
+					*flags);
 
 void				ft_visualize(t_mlx *mlx);
 
-void				ft_draw_stack(t_mlx *ptrs, t_lst *stack, int x, char *color);
+void				ft_draw_stack(t_mlx *ptrs, t_lst *stack, int x,
+					char *color);
 
 void				ft_visualize_moves(t_mlx *mlx, int moves_amount);
 
@@ -77,7 +80,7 @@ int					ft_deal_key(int key, t_mlx *mlx);
 void				ft_close(t_mlx *ptrs);
 
 int					ft_is_checker_flag(char *argv);
-int 				ft_add_checker_flags(int arg, char **argv, t_flags *flags);
+int					ft_add_checker_flags(int arg, char **argv, t_flags *flags);
 void				ft_print_result(t_stacks *stacks, int d);
 void				ft_copy_stacks_to_mlx(t_mlx *mlx, t_stacks *stacks);
 
