@@ -5,11 +5,21 @@
 # else NUMBERS is all values between end and start in random order
 # divided by spaces.
 # runs push_swap and checker with NUMBERS.
+
 if [ $# -ne 3 ] ; then
         echo -e "\nUsage:\t$0 START END MAX_AMOUNT\n"
         exit 1
 fi
-NUMBERS=$( seq $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
-./push_swap $NUMBERS | ./checker -v -d $NUMBERS
-#./push_swap $NUMBERS
-#echo $NUMBERS
+
+#version for faster generation with a big scale
+#if [ $(( $(($2 - $1)) / $3 - 1 )) -lt 1 ] ; then
+#        INCREMENT=1;
+#else
+#        INCREMENT=$(( $(($2 - $1)) / $3 - 1 ))
+#fi
+#NUMBERS=$( seq -f "%.f" $1 $INCREMENT $2 | sort -R | head -n $3 | tr '\n' ' ' )
+
+NUMBERS=$( seq -f "%.f" $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
+echo $NUMBERS
+./push_swap $NUMBERS | ./checker -d $NUMBERS
+./push_swap $NUMBERS | wc

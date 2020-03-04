@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utilities.c                                   :+:      :+:    :+:   */
+/*   push_swap_utilities.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llahti <llahti@student.42.fr>              +#+  +:+       +#+        */
+/*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:05:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/02/27 17:59:12 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 17:22:34 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,28 @@ int		ft_is_rotated(t_stacks *stacks, char stack, int nb)
 	return (distance > stacks->b_len / 2);
 }
 
-void	ft_push_to_a_and_swap_if_needed(t_stacks *stacks)
+int		ft_is_basically_sorted(t_stacks *stacks, int smallest, int biggest)
 {
-	if (stacks->b_len == 0)
-		return ;
-	ft_pspush(stacks, 'a');
-	if (stacks->a->nb > stacks->a->next->nb)
-		ft_psswap(stacks, 'a');
+	t_lst	*temp;
+	int		first;
+
+	if (stacks->a->nb == smallest)
+		return (ft_list_is_sorted(stacks->a));
+	temp = stacks->a;
+	first = temp->nb;
+	while (temp->next)
+	{
+		if ((temp->nb == biggest && temp->next->nb == smallest) ||
+			(temp->nb < temp->next->nb))
+			temp = temp->next;
+		else
+			return (0);
+	}
+	if (first != smallest && first < temp->nb)
+		return (0);
+	if (!ft_is_rotated(stacks, 'a', smallest))
+		ft_rotate_stack_to(smallest, 'a', stacks);
+	else
+		ft_reverse_rotate_stack_to(smallest, 'a', stacks);
+	return (1);
 }

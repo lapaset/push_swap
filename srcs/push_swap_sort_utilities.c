@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   combine_sort.c                                     :+:      :+:    :+:   */
+/*   push_swap_sort_utilities.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 17:12:00 by llahti           ###   ########.fr       */
+/*   Created: 2020/03/03 15:32:46 by llahti            #+#    #+#             */
+/*   Updated: 2020/03/03 17:39:11 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_combine_sort(t_stacks *stacks)
+void	ft_swap_a_if_first_is_bigger(t_stacks *stacks)
 {
-	int     pivot;
-	int		a_pivot;
-	int     b_pivot;
+	if (stacks->a->nb > stacks->a->next->nb)
+		ft_psswap(stacks, 'a');
+}
 
-	pivot = ft_cs_pivot(stacks);
-	b_pivot = ft_cs_pivot_under(pivot, stacks);
-	a_pivot = ft_cs_split(pivot, b_pivot, stacks);
-	
-	ft_sort_a(stacks);
-	ft_part_to_a(stacks, pivot);
-	ft_part_to_a(stacks, b_pivot);
-	ft_rest_to_a(stacks);	
+void	ft_push_to_a_and_swap_if_needed(t_stacks *stacks)
+{
+	if (stacks->b_len == 0)
+		return ;
+	ft_pspush(stacks, 'a');
+	ft_swap_a_if_first_is_bigger(stacks);
 }

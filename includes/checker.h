@@ -6,14 +6,13 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:48:25 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 15:25:38 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:51:01 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "../libft/srcs/libft/libft.h"
 # include "mlx.h"
 # include "stacks.h"
 # include <fcntl.h>

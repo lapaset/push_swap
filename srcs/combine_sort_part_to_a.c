@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   part_to_a.c                                        :+:      :+:    :+:   */
+/*   combine_sort_part_to_a.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:34:22 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/01 10:50:41 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 17:25:25 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void			ft_rest_to_a(t_stacks *stacks)
 			biggest = ft_find_next_biggest(stacks->b, biggest);
 	}
 	ft_push_three_or_less_to_a(stacks, stacks->b_len);
-	//ft_pspush(stacks, 'a');
-	//ft_push_to_a_and_swap_if_needed(stacks);
 }
 
 void			ft_part_to_a(t_stacks *stacks, int pivot)
@@ -104,10 +102,8 @@ void			ft_part_to_a(t_stacks *stacks, int pivot)
 	if (part_size > 2)
 		ft_move_all_but_two(stacks, biggest, pivot, part_size);
 	while (stacks->b_end->nb > pivot)
-	//while (stacks->b_end->nb >= pivot)
 		ft_psreverse_rotate(stacks, 'b');
 	ft_pspush(stacks, 'a');
 	if (stacks->b && stacks->b->nb > pivot)
-	//if (stacks->b && stacks->b->nb >= pivot)
 		ft_push_to_a_and_swap_if_needed(stacks);
 }

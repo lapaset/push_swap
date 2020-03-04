@@ -6,14 +6,23 @@ if [ $# -ne 4 ] ; then
         echo -e "\nUsage:\t$0 START END AMOUNT TIMES\n"
         exit 1
 fi
+
 if [ $(($2 - $1 + 1)) -lt $3 ] ; then
         echo -e "\nUsage:\t$0 START END AMOUNT TIMES
         AMOUNT needs to be less than or equal to (END - START + 1).\n"
         exit 1
 fi
+
+if [ $(( $(($2 - $1)) / $3 - 1 )) -lt 1 ] ; then
+    INCREMENT=1;
+else
+    INCREMENT=$(( $(($2 - $1)) / $3 - 1 ))
+fi
+
 SUM=0
+
 for (( I=0; I<$4; I++ )) ; do
-        NUMBERS=$( seq -t "" $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
+        NUMBERS=$( seq -f "%.f" $1 $INCREMENT $2 | sort -R | head -n $3 | tr '\n' ' ' )
         SUM=$(( $SUM + $( ./push_swap $NUMBERS | wc -l ) ))
         echo $NUMBERS >> results
         ./push_swap $NUMBERS | ./checker $NUMBERS >> results

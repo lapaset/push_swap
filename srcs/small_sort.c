@@ -6,7 +6,7 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 10:16:15 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 11:25:52 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 17:08:29 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,7 @@ void	ft_small_sort(t_stacks *stacks)
 	int		pivot;
 
 	pivot = ft_cs_pivot(stacks);
-	//ft_printf("a_len: %d\n", stacks->a_len);
 	ft_small_a_split(stacks, pivot);
-	/*ft_printf("small sort pivot: %d\nstacks are split: ", pivot);
-	ft_print_lst(stacks->a);
-	ft_print_lst(stacks->b);*/
 	ft_sort_a(stacks);
-	/*ft_printf("a is sorted: ");
-	ft_print_lst(stacks->a);
-	ft_print_lst(stacks->b);*/
 	ft_rest_to_a(stacks);
-	/*ft_printf("all is sorted: ");
-	ft_print_lst(stacks->a);
-	ft_print_lst(stacks->b);*/
 }

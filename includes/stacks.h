@@ -6,9 +6,11 @@
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:12:08 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/02 12:53:29 by llahti           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:47:14 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+# include "../libft/srcs/libft/libft.h"
 
 typedef struct 		s_lst
 {
@@ -29,6 +31,8 @@ typedef struct		s_stacks
 
 //make_list:
 void				ft_params_to_list(int arg, char **argv, t_stacks *stacks);
+
+//stacks_elems
 t_lst				*ft_new_elem(int nb);
 t_lst				*ft_add_elem_to_start(t_lst *stack, t_lst *elem);
 t_lst				*ft_add_elem_to_end(t_lst *stack_last, t_lst *elem);

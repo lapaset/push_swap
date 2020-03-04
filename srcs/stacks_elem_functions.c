@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   combine_sort.c                                     :+:      :+:    :+:   */
+/*   stacks_elem_functions.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llahti <llahti@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 14:08:43 by llahti            #+#    #+#             */
-/*   Updated: 2020/03/03 17:12:00 by llahti           ###   ########.fr       */
+/*   Created: 2020/03/03 15:43:29 by llahti            #+#    #+#             */
+/*   Updated: 2020/03/03 15:50:57 by llahti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stacks.h"
 
-void    ft_combine_sort(t_stacks *stacks)
+t_lst			*ft_new_elem(int nb)
 {
-	int     pivot;
-	int		a_pivot;
-	int     b_pivot;
+	t_lst 	*elem;
 
-	pivot = ft_cs_pivot(stacks);
-	b_pivot = ft_cs_pivot_under(pivot, stacks);
-	a_pivot = ft_cs_split(pivot, b_pivot, stacks);
-	
-	ft_sort_a(stacks);
-	ft_part_to_a(stacks, pivot);
-	ft_part_to_a(stacks, b_pivot);
-	ft_rest_to_a(stacks);	
+	if (!(elem = (t_lst*)malloc(sizeof(t_lst))))
+		exit(1);
+	elem->nb = nb;
+	elem->next = NULL;
+	return (elem);
+}
+
+t_lst			*ft_add_elem_to_start(t_lst *stack, t_lst *elem)
+{
+	elem->next = stack;
+	return (elem);
+}
+
+t_lst			*ft_add_elem_to_end(t_lst *stack_last, t_lst *elem)
+{
+	stack_last->next = elem;
+	return (elem);
 }
