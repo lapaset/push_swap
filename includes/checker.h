@@ -17,8 +17,8 @@
 # include "stacks.h"
 # include <fcntl.h>
 
-# define WIN_WIDTH 1800
-# define WIN_HEIGHT 800
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 900
 # define MAX_MOVES 6000
 # define MIN_SPEED 100000
 # define STACK_A_COLOR "5500FF"
