@@ -2,7 +2,7 @@
 
 Hive Helsinki school project. Sorting data in stacks with a limited set of instructions with lowest possible amount of actions.
 
-![push_swap visualization screenshot](push_swap_visualization.png)
+[![Demo video on youtube](images/push_swap_demo_screenshot.png)](https://youtu.be/S3Dhw1GK3Og)
 
 ## The subject
 
