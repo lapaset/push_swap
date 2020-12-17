@@ -20,6 +20,5 @@ fi
 #NUMBERS=$( seq -f "%.f" $1 $INCREMENT $2 | sort -R | head -n $3 | tr '\n' ' ' )
 
 NUMBERS=$( seq -f "%.f" $1 $2 | sort -R | head -n $3 | tr '\n' ' ' )
-echo $NUMBERS
-./push_swap $NUMBERS | ./checker -d $NUMBERS
-#./push_swap $NUMBERS
+#echo $NUMBERS
+./push_swap $NUMBERS | ./checker -v $NUMBERS
